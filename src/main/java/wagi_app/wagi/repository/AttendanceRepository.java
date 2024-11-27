@@ -11,6 +11,5 @@ import java.util.Optional;
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>{
 
     // 특정 학생의 출석 기록 조회
-//    Optional<Attendance> findByUserId(Long userId);
-
+    List<Attendance> findByUserId(List<Long> userId);
 }
