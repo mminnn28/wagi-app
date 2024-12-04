@@ -31,15 +31,15 @@ public class Notice {
 //    @GeneratedValue(strategy = GenerationType.AUTO) // 자동으로 생성되는 타임스탬프
 //    private LocalDateTime createdAt;
 
-    // 기본 생성자
-    public Notice() {}
-
-    // 생성자, getter 및 setter
-    public Notice(String title, String content) {
-        this.title = title;
-        this.content = content;
-        //       this.createdBy = createdBy;
-//        this.createdAt = LocalDateTime.now(); // 현재 시간 설정
-    }
+//    // 기본 생성자
+//    public Notice() {}
+//
+//    // 생성자, getter 및 setter
+//    public Notice(String title, String content) {
+//        this.title = title;
+//        this.content = content;
+//        //       this.createdBy = createdBy;
+////        this.createdAt = LocalDateTime.now(); // 현재 시간 설정
+//    }
 
 }

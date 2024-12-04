@@ -3,10 +3,7 @@ package wagi_app.wagi.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import wagi_app.wagi.entity.Notice;
 import wagi_app.wagi.service.NoticeService;
 
@@ -17,16 +14,11 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-//    @Autowired
-//    public NoticeController(NoticeService noticeService) {
-//        this.noticeService = noticeService;
-//    }
-
     // 공지사항 작성 폼을 보여주는 메서드
     @GetMapping("/new")
     public String createNoticeForm(Model model) {
         model.addAttribute("notice", new Notice());
-        return "notice/write";
+        return "addNotice";
     }
 
     // 공지사항을 저장하는 메서드
@@ -35,6 +27,39 @@ public class NoticeController {
         noticeService.createNotice(notice);
         return "redirect:/notices";  // 저장 후 목록 페이지로 리다이렉트
     }
+
+     //공지사항 삭제
+     @DeleteMapping("/{id}")
+     public String deleteNotice(@PathVariable Long id) {
+         noticeService.deleteNotice(id);
+         return "redirect:/notices";
+     }
+
+    // 공지사항 수정 폼 보기
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Notice notice = noticeService.getNoticeById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Notice not found"));
+        model.addAttribute("notice", notice);
+        return "notices/edit-form";
+    }
+
+    // 공지사항 수정 처리
+    @PutMapping("/{id}")
+    public String updateNotice(@PathVariable Long id,
+                               @ModelAttribute Notice noticeDetails) {
+        Notice existingNotice = noticeService.getNoticeById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Notice not found"));
+
+        // 기존 공지사항 정보 업데이트
+        existingNotice.setTitle(noticeDetails.getTitle());
+        existingNotice.setContent(noticeDetails.getContent());
+        // 필요한 다른 필드들도 업데이트
+
+        noticeService.updateNotice(existingNotice);
+        return "redirect:/notices";
+    }
+
 }
 
 //    // 공지사항 리스트 조회
@@ -75,14 +100,7 @@ public class NoticeController {
 //        return "notices/detail";
 //    }
 //
-//    // 공지사항 수정 폼
-//    @GetMapping("/{id}/edit")
-//    public String showEditForm(@PathVariable Long id, Model model) {
-//        Notice notice = noticeService.getNoticeById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Notice not found"));
-//        model.addAttribute("notice", notice);
-//        return "notices/form";
-//    }
+//
 //
 //    // 공지사항 업데이트
 //    @PostMapping("/{id}/edit")
