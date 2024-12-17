@@ -1,17 +1,21 @@
 package wagi_app.wagi.entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
-import lombok.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import wagi_app.wagi.DTO.UserCreateDto;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.Collections;
 
+@Getter
+@Setter
 @Entity
 @Data
 public class User implements UserDetails {
