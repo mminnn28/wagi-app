@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import wagi_app.wagi.DTO.OutcomeCreateDto;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,6 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Entity
-@Table(name = "Outcome") // 테이블 이름 설정
 public class Outcome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,23 +29,17 @@ public class Outcome {
     private User createdBy; // Users 테이블 참조
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @PrePersist
-    public void prePersist() {
-        if (createdAt == null) {
-            createdAt = LocalDateTime.now(); // 현재 시간으로 설정
-        }
+    private String imagePath; // 이미지 경로 저장 필드
+
+    public static Outcome from(OutcomeCreateDto dto, User createdBy, String imagePath) {
+        Outcome outcome = new Outcome();
+        outcome.setTitle(dto.getTitle());
+        outcome.setContent(dto.getContent());
+        outcome.setCreatedBy(createdBy);
+        outcome.setImagePath(imagePath);
+        return outcome;
     }
 
-    // 기본 생성자
-    public Outcome() {}
-
-    // 생성자, getter 및 setter
-    public Outcome(String title, String content) {
-        this.title = title;
-        this.content = content;
-        //       this.createdBy = createdBy;
-//        this.createdAt = LocalDateTime.now(); // 현재 시간 설정
-    }
 }

@@ -33,19 +33,6 @@ public class Notice {
 
     private String imagePath; // 이미지 경로 저장 필드
 
-//    @PrePersist
-//    public void prePersist() {
-//        if (createdAt == null) {
-//            createdAt = LocalDateTime.now(); // 현재 시간으로 설정
-//        }
-//    }
-//    public Notice(){}
-//    public Notice(Long id, String title, String content, User createdBy) {
-//        this.id = id;
-//        this.title = title;
-//        this.content = content;
-//        this.createdBy = createdBy;
-//    }
     public static Notice from(NoticeCreateDto dto, User createdBy, String imagePath) {
         Notice notice = new Notice();
         notice.setTitle(dto.getTitle());

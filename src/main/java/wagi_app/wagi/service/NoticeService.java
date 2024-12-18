@@ -107,42 +107,5 @@ public class NoticeService {
             }
         }
     }
-//
-//    // 제목으로 공지사항 조회
-//    public List<Notice> getNoticesByTitle(String title) {
-//        return noticeRepository.findByTitleContaining(title); // 제목에 포함된 글자 찾기
-//    }
-//
-//    // ID로 공지사항 조회
-//    public Optional<Notice> getNoticeById(Long id) {
-//        return noticeRepository.findById(id);
-//    }
-//
-//    // 모든 공지사항 조회
-//    public List<Notice> getAllNotices() {
-//        return noticeRepository.findAll();
-//    }
-//
-//    // 공지사항 수정 (제목으로 조회 후 수정)
-//    public Notice updateNoticeByTitle(String oldTitle, NoticeUpdateDto noticeUpdateDto) {
-//        List<Notice> notices = noticeRepository.findByTitleContaining(oldTitle);
-//        if (notices.isEmpty()) {
-//            throw new EntityNotFoundException("공지사항을 찾을 수 없습니다.");
-//        }
-//
-//        Notice notice = notices.get(0); // 일치하는 첫 번째 공지사항을 수정
-//        notice.setTitle(noticeUpdateDto.getTitle());
-//        notice.setContent(noticeUpdateDto.getContent());
-//        return noticeRepository.save(notice);
-//    }
-//
-//    // 공지사항 삭제 (제목으로 조회 후 삭제)
-//    public void deleteNoticeByTitle(String title) {
-//        List<Notice> notices = noticeRepository.findByTitleContaining(title);
-//        if (notices.isEmpty()) {
-//            throw new EntityNotFoundException("공지사항을 찾을 수 없습니다.");
-//        }
-//        noticeRepository.delete(notices.get(0)); // 일치하는 첫 번째 공지사항 삭제
-//    }
 
 }

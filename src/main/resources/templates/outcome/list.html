@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아웃컴 목록</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>아웃컴 목록</h1>
+<a href="/outcome/write">아웃컴 작성</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>이미지</th>
+        <th>작성자</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="outcome, iterStat : ${outcomes}">
+        <td th:text="${iterStat.count}">1</td>
+        <td th:text="${outcome.title}">제목</td>
+        <td th:text="${outcome.content}">내용</td>
+        <td>
+            <img th:if="${outcome.imagePath}" th:src="@{${outcome.imagePath}}" alt="아웃컴 이미지" width="100">
+        </td>
+        <td th:text="${outcome.createdBy.username}">작성자</td>
+        <td>
+            <form th:action="@{'/outcome/' + ${outcome.id} + '/edit'}" method="get">
+                <button type="submit">수정</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/outcome/' + ${outcome.id} + '/delete'}" method="post">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

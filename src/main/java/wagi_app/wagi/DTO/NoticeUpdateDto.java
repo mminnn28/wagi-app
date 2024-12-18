@@ -15,9 +15,5 @@ public class NoticeUpdateDto {
     private String content;
 
     private MultipartFile imageFile;
-//    public NoticeUpdateDto(String title, String content) {
-//        this.title = title;
-//        this.content = content;
-//    }
 
 }

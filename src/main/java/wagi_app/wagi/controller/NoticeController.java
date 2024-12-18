@@ -49,7 +49,7 @@ public class NoticeController {
     @PostMapping("/{id}/edit")
     public String updateNotice(@PathVariable Long id, @ModelAttribute NoticeUpdateDto dto, @AuthenticationPrincipal User user) throws IOException {
         noticeService.updateNotice(id, dto, user);
-        return "notice/editNotice";
+        return "redirect:/notice";
     }
 
     // 공지사항 삭제
