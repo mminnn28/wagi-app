@@ -7,8 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-public class NoticeCreateDto {
-
+public class NoticeUpdateDto {
     @NotBlank(message = "제목을 입력해주세요.")
     private String title;
 
@@ -16,9 +15,7 @@ public class NoticeCreateDto {
     private String content;
 
     private MultipartFile imageFile;
-
-//    public NoticeCreateDto() {}
-//    public NoticeCreateDto(String title, String content) {
+//    public NoticeUpdateDto(String title, String content) {
 //        this.title = title;
 //        this.content = content;
 //    }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -21,6 +23,20 @@ public class Outcome {
 
     @Column(name = "content", columnDefinition = "TEXT", nullable = false)
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by", referencedColumnName = "userId")
+    private User createdBy; // Users 테이블 참조
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now(); // 현재 시간으로 설정
+        }
+    }
 
     // 기본 생성자
     public Outcome() {}
