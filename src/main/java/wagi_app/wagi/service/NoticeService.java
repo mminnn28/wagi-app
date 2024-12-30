@@ -3,90 +3,109 @@ package wagi_app.wagi.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import wagi_app.wagi.DTO.NoticeCreateDto;
+import wagi_app.wagi.DTO.NoticeUpdateDto;
 import wagi_app.wagi.entity.Notice;
+import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.NoticeRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
 public class NoticeService {
-
+    @Value("${file.upload-dir}")
+    private String uploadDir;
     private final NoticeRepository noticeRepository;
 
     @Autowired
     public NoticeService(NoticeRepository noticeRepository) {
         this.noticeRepository = noticeRepository;
     }
-
-    public Notice createNotice(Notice notice) {
+    // 공지사항 생성 (이미지 저장)
+    public Notice createNotice(NoticeCreateDto dto, User createdBy) throws IOException {
+        String imagePath = saveImage(dto.getImageFile());
+        Notice notice = Notice.from(dto, createdBy, imagePath);
         return noticeRepository.save(notice);
     }
-
-    // ID로 공지사항 조회
-    public Optional<Notice> getNoticeById(Long id) {
-        return noticeRepository.findById(id);
-    }
-
     // 모든 공지사항 조회
     public List<Notice> getAllNotices() {
         return noticeRepository.findAll();
     }
 
-    // 공지사항 수정
-    public Notice updateNotice(Notice notice) {
-        // 기존 공지사항 존재 여부 확인
-        Notice existingNotice = noticeRepository.findById(notice.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Notice not found with id: " + notice.getId()));
-
-        // 필요한 필드 업데이트
-        existingNotice.setTitle(notice.getTitle());
-        existingNotice.setContent(notice.getContent());
-        // 필요에 따라 다른 필드도 업데이트 가능
-
-        return noticeRepository.save(existingNotice);
+    // ID로 공지사항 조회
+    public Notice getNoticeById(Long id) {
+        return noticeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("공지사항을 찾을 수 없습니다."));
     }
-    // 공지사항 삭제
-    public void deleteNotice(Long id) {
-        // 존재 여부 확인 후 삭제
-        if (!noticeRepository.existsById(id)) {
-            throw new EntityNotFoundException("Notice not found with id: " + id);
+
+    // 공지사항 수정 (이미지 수정)
+    public Notice updateNotice(Long id, NoticeUpdateDto dto, User updatedBy) throws IOException {
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
+
+        if (!notice.getCreatedBy().equals(updatedBy)) {
+            throw new SecurityException("수정 권한이 없습니다.");
         }
-        noticeRepository.deleteById(id);
+
+        // 기존 이미지 삭제 후 새 이미지 저장
+        if (dto.getImageFile() != null && !dto.getImageFile().isEmpty()) {
+            deleteImage(notice.getImagePath());
+            String imagePath = saveImage(dto.getImageFile());
+            notice.setImagePath(imagePath);
+        }
+
+        notice.setTitle(dto.getTitle());
+        notice.setContent(dto.getContent());
+        return noticeRepository.save(notice);
+    }
+
+    // 공지사항 삭제 (이미지 삭제)
+    public void deleteNotice(Long id, User deletedBy) {
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
+
+        if (!notice.getCreatedBy().equals(deletedBy)) {
+            throw new SecurityException("삭제 권한이 없습니다.");
+        }
+
+        // 이미지 파일 삭제
+        deleteImage(notice.getImagePath());
+
+        noticeRepository.delete(notice);
+    }
+
+    private String saveImage(MultipartFile imageFile) throws IOException {
+        if (imageFile == null || imageFile.isEmpty()) {
+            return null;
+        }
+
+        String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+        Path directory = Paths.get(uploadDir);
+        if (!Files.exists(directory)) {
+            Files.createDirectories(directory); // 폴더가 없으면 생성
+        }
+
+        Path filePath = directory.resolve(fileName);
+        imageFile.transferTo(filePath.toFile());
+        return "/uploads/img/" + fileName;
+    }
+
+    private void deleteImage(String imagePath) {
+        if (imagePath != null) {
+            File file = new File(uploadDir + "/" + imagePath.substring(imagePath.lastIndexOf("/") + 1));
+            if (file.exists()) {
+                file.delete();
+            }
+        }
     }
 
 }
-
-//    // 공지사항 생성
-//    public Notice createNotice(Notice notice) {
-//        return noticeRepository.save(notice);
-//    }
-//
-//    // 공지사항 전체 조회
-//    public List<Notice> getAllNotices() {
-//        return noticeRepository.findAll();
-//    }
-//
-//    // 공지사항 ID로 조회
-//    public Optional<Notice> getNoticeById(Long id) {
-//        return noticeRepository.findById(id);
-//    }
-//
-//    // 공지사항 수정
-//    public Notice updateNotice(Long id, Notice updatedNotice) {
-//        return noticeRepository.findById(id)
-//                .map(notice -> {
-//                    notice.setTitle(updatedNotice.getTitle());
-//                    notice.setContent(updatedNotice.getContent());
-//                    return noticeRepository.save(notice);
-//                })
-//                .orElseThrow(() -> new IllegalArgumentException("Notice not found"));
-//    }
-//
-//    // 공지사항 삭제
-//    public void deleteNotice(Long id) {
-//        noticeRepository.deleteById(id);
-//    }
-

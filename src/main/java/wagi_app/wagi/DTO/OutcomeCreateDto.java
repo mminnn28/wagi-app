@@ -1,15 +1,13 @@
 package wagi_app.wagi.DTO;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
 public class OutcomeCreateDto {
-    @NotNull(message = "id를 입력해주세요")
-    private Long noticeId;
 
     @NotBlank(message = "제목을 입력해주세요.")
     private String title;
@@ -17,4 +15,5 @@ public class OutcomeCreateDto {
     @NotBlank(message = "내용을 입력해주세요.")
     private String content;
 
+    private MultipartFile imageFile;
 }

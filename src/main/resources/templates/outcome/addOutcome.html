@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>아웃컴 작성</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>아웃컴 작성</h1>
+<form th:action="@{/outcome}" method="post" enctype="multipart/form-data">
+  <label>제목:</label>
+  <input type="text" name="title" required/><br/><br/>
+
+  <label>내용:</label>
+  <textarea name="content" rows="5" required></textarea><br/><br/>
+
+  <label>이미지 파일:</label>
+  <input type="file" name="imageFile"/><br/><br/>
+
+  <button type="submit">저장</button>
+</form>
+<a href="/outcome">목록으로 돌아가기</a>
+</body>
+</html>

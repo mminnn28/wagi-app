@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import wagi_app.wagi.DTO.NoticeCreateDto;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "Notices") // 테이블 이름 설정
 public class Notice {
 
     @Id
@@ -23,23 +24,22 @@ public class Notice {
     @Column(name = "content", columnDefinition = "TEXT", nullable = false)
     private String content;
 
-//    @ManyToOne
-//    @JoinColumn(name = "created_by", referencedColumnName = "user_id")
-//    private User createdBy; // Users 테이블 참조
-//
-//    @Column(name = "created_at", updatable = false)
-//    @GeneratedValue(strategy = GenerationType.AUTO) // 자동으로 생성되는 타임스탬프
-//    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "created_by", referencedColumnName = "userId", nullable = false)
+    private User createdBy; // Users 테이블 참조
 
-//    // 기본 생성자
-//    public Notice() {}
-//
-//    // 생성자, getter 및 setter
-//    public Notice(String title, String content) {
-//        this.title = title;
-//        this.content = content;
-//        //       this.createdBy = createdBy;
-////        this.createdAt = LocalDateTime.now(); // 현재 시간 설정
-//    }
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
+    private String imagePath; // 이미지 경로 저장 필드
+
+    public static Notice from(NoticeCreateDto dto, User createdBy, String imagePath) {
+        Notice notice = new Notice();
+        notice.setTitle(dto.getTitle());
+        notice.setContent(dto.getContent());
+        notice.setCreatedBy(createdBy);
+        notice.setImagePath(imagePath);
+        return notice;
+    }
+    
 }
