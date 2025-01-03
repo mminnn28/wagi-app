@@ -10,6 +10,6 @@ import java.util.Optional;
 @EnableJpaRepositories
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>{
 
-    // 특정 학생의 출석 기록 조회
-    List<Attendance> findByUserId(List<Long> userId);
+//    // 특정 학생의 출석 기록 조회
+//    List<Attendance> findByUserId(List<Long> userId);
 }

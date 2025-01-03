@@ -25,4 +25,6 @@ public class Attendance extends BaseTimeEntity {
 
     private Integer attendance; //출결 (1: 출석, 0: 지각, null: 결석)
 
+    public void setUserId(String userId) {
+    }
 }

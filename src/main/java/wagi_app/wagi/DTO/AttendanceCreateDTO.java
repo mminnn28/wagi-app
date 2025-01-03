@@ -10,7 +10,7 @@ public class AttendanceCreateDTO {
 
     private Long attendanceId; //pk (DB 출결 정보 식별용)
 
-    private long userId; //학번
+    private String userId; //학번
 
     private String username; //이름
 
