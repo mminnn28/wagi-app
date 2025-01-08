@@ -2,7 +2,9 @@ package wagi_app.wagi.entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,30 +14,33 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //pk
 
     @NotNull
     @Column(unique = true)
-    private String userId;
+    private String userId; // 로그인 시 사용하는 아이디
 
     @NotNull
-    private String username;
+    private String username; // 사용자 이름
 
     @NotNull
     @Column(unique = true)
-    private String studentId;
+    private String studentId; // 학번
 
     @NotNull
-    private String major;
+    private String major; // 전공
 
     @NotNull
-    private String password;
+    private String password; // 비밀번호
 
-    private String role;
+    @NotNull
+    private String role; // 역할 (일반 사용자/관리자)
 
     public static User createUser(UserCreateDto userCreateDto, PasswordEncoder passwordEncoder) {
         User user = new User();
@@ -45,14 +50,13 @@ public class User implements UserDetails {
         user.setMajor(userCreateDto.getMajor());
         String password = passwordEncoder.encode(userCreateDto.getPassword());
         user.setPassword(password);
-        user.setRole("ROLE_USER");
+        user.setRole("USER");
         return user;
     }
 
     // UserDetails 인터페이스 메서드 구현
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        // 권한 반환 ROLE_USER, etc...
+    public Collection<? extends GrantedAuthority> getAuthorities() { // 권한 반환 ROLE_USER, etc...
         return Collections.singleton(() -> role);
     }
 
