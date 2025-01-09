@@ -1,7 +1,9 @@
 package wagi_app.wagi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.message.StringFormattedMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import wagi_app.wagi.DTO.AttendanceCreateDTO;
 import wagi_app.wagi.entity.Attendance;
+import wagi_app.wagi.entity.User;
 import wagi_app.wagi.service.AttendanceService;
 
 import java.util.Optional;
@@ -29,6 +32,20 @@ public class AttendanceController {
     @GetMapping("/attendance/request")
     public String requestAttendanceCode() {
         return "attendance2";
+    }
+
+    //출석 인증번호 생성 화면
+    @GetMapping("/admin/attendance")
+    public String createAttendanceCode(User user, Model model) {
+        int attendanceCode = attendanceService.createAttendanceCode(); // 인증번호 생성
+        model.addAttribute("attendanceCode", attendanceCode); // 모델에 데이터 추가
+
+        if (user.getRole() == "ADMIN") {
+            return "attendanceCode";
+        }
+        else {
+            return "accessDenied";
+        }
     }
 
     //출석 인증번호 입력 화면
