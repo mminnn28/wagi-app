@@ -1,0 +1,427 @@
+@media (min-width: 450px) {
+    * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; 
+    }
+
+    a {
+        text-decoration-line: none;
+        color: white;
+    }
+
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    #main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        width: 140vw; /* 화면 너비의 140% */
+        height: 10vh; /* 화면 높이의 10% */
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5vw;
+        z-index: 999;
+    }
+
+    #main-header > a {
+        margin-top: 4vh;
+    }
+
+    #main-navigation {
+        float: left;
+    }
+
+    #category_button {
+        display: none;
+    }
+
+    .menu-item {
+        list-style: none;
+        display: inline-block;
+        padding-right: 10vw;
+        font-weight: bold;
+        font-size: 2.5vh;
+    }
+
+    #main-section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex: 1;
+        display: flex;
+    }
+
+    #title {
+        text-align: center;
+    }
+
+    #main-footer {
+        background-color: #9EA9D7;
+        padding: 1vh;
+        text-align: center;
+        color: white;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main-footer p {
+        margin-bottom: 0;
+        background-color: #9EA9D7;
+        color: black;
+    }
+
+    #main-footer img {
+        width: 15vw;
+        background-color: #9EA9D7;
+    }
+
+    .link {
+        display: flex;
+        gap: 3vw;
+    }
+
+    .link a {
+        width: 5vw;
+        height: 5vw;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #login-button {
+        padding: 1vh 2vw;
+        border: none;
+        cursor: pointer;
+        border-radius: 2vw;
+        position: absolute;
+        bottom: 1vh;
+        right: 2vw;
+        background-color: #CCE2FF;
+        color: black;
+    }
+
+    #main-footer div {
+        display: flex;
+        justify-content: center;
+    }
+
+    #category_button {
+        display: none;
+    }
+
+    #slide {
+        display: none;
+    }
+
+    #slide_menu {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    * {
+        font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    }
+
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: scroll;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: white;
+    }
+
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        /*align-items: center;
+        justify-content: center;*/
+        height: 80vh;
+    }
+    #main-header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 10vh;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+    }
+
+    #main-header > a {
+        margin-top: 3vh;
+    }
+
+    #main-header #back-button {
+        height: 20px;
+    }
+
+    #main-header > a > img {
+        width: 20vw;
+        margin-left: 5vw;
+        max-height: 4vh;
+        margin-bottom: 1vh;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #category_button {
+        width: 10vw;
+        height: 8vh;
+        top: 3vh;
+        left: 3vw;
+    }
+
+    #main-navigation {
+        display: none;
+    }
+
+    #main-section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex: 1;
+        display: flex;
+    }
+
+    #title {
+        text-align: center;
+    }
+
+    #main-footer p {
+        margin-bottom: 0;
+        
+        color: black;
+    }
+
+    #main-footer img {
+        width: 15vw;
+        
+    }
+
+    .link {
+        display: flex;
+        gap: 3vw;
+    }
+
+    .link a {
+        width: 8vw;
+        height: 8vw;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #login-button {
+        display: none;
+    }
+
+    .slide {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 8vh;
+        right: 0;
+        bottom: 0;
+        transition: top 0.5s;
+        background-color: black;
+        max-height: 40%;
+    }
+
+    .slide.on {
+        left: 0;
+    }
+
+    .slide ul li {
+        color: white;
+        display: inline-block;
+        width: 100%;
+        padding: 2vh;
+        padding-left: 10vw;
+    }
+
+    #main-navigation ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 3vw;
+    }
+
+    #main-navigation ul li {
+        display: inline;
+    }
+
+    #main-navigation ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #attendance-title {
+        position: absolute;
+        top: 5vh;
+        left: 3vw;
+        color: white;
+        font-size: 4vw;
+        font-weight: bold;
+    }
+
+    /* 페이지 전체 래퍼 */
+    #page-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 80vh; /* Full height minus header and footer */
+        padding: 10px;
+    }
+
+    /* 메인 콘텐츠 영역 */
+    #main-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90vw;
+    }
+
+    /* 푸터 */
+    #main-footer {
+        background-color: #9EA9D7;
+        padding: 2vh;
+        text-align: center;
+        color: white;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #attendance-box {
+        left:20px;
+        background-color: white;
+        padding: 2vh;
+        border: 1px solid #ddd;
+        box-shadow: 0px 0.5vh 1vh rgba(0, 0, 0, 0.1);
+        width: 359px;
+        box-sizing: border-box;
+        height: 412px;
+        text-align: center;
+        position: relative;
+        border-radius: 20px;
+        overflow-y: auto;
+    }
+
+    #date-label {
+        position: absolute;
+        top: -2vh;
+        left: 3vw;
+        font-size: 3vw;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+    }
+
+    .attendance-container {
+        color: black;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1vw;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .attendance-image {
+        width:100px;
+        height:35px;
+        display: flex;
+        justify-content: center;
+        margin-right: -1vw;
+    }
+
+    .date-box-left, .date-box-right {
+        width:40px;
+        height:11px;
+        text-align: center;
+        font-size: 2.5vw;
+        font-weight: bold;
+        padding: 0.2vh;
+        border-radius: 2vw;
+        line-height: 1;
+        position: relative;
+        
+    }
+
+    .date-box-left span, .date-box-right span {
+        font-size: 12px;
+        font:bold;
+        font-weight: 400 bold;
+        line-height: 15px;
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .date-box-left {
+        background-color: #CCE2FFB0;
+    }
+
+    .date-box-right {
+        background-color: #C0CCFFB0;
+    }
+
+    .attendance-image img {
+        width: 15vw;
+        height: auto;
+    }
+}

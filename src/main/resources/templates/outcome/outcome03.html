@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WAGI WEB PAGE</title>
+    <link rel="stylesheet" href="static/css/outcome03.css" />
+    <!-- JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header id="main-header">
+      <a href="javascript:history.back()">
+        <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
+        <img src="static/img/whiteBack.svg" alt="back" id="back-button" />
+      </a>
+      <a href="main.html">
+        <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo" />
+      </a>
+      <nav id="main-navigation">
+        <ul class="menu">
+          <li class="menu-item"><a href="./notice.html">Notice</a></li>
+          <li class="menu-item"><a href="">Attendance</a></li>
+          <li class="menu-item"><a href="./outcome.html">Outcome</a></li>
+        </ul>
+      </nav>
+
+      <!-- 모바일 전용 -->
+      <a>
+        <img
+          src="static/img/ci_hamburger-lg.svg"
+          id="category_button"
+          value=""
+        />
+      </a>
+      <div class="slide" id="slide">
+        <ul id="slide_menu">
+            <li class="menu-item"><a href="./notice.html">Notice</a></li>
+            <li class="menu-item"><a href="./attendance2.html">Attendance</a></li>
+            <li class="menu-item"><a href="./outcome.html">Outcome</a></li>
+            <li class="menu-item"><a href="./manager1.html">Manager-출석</a></li>
+            <li class="menu-item"><a href="./outcome03.html">Manager-Outcome</a></li>
+            <li class="menu-item"><a href="./notice04_01.html">Manager-Notice</a></li>
+            <li class="menu-item"><a href="./manager03.html">Manager-합격자</a></li>
+            <li class="menu-item"><a href="./manager04.html">Manager-권한</a></li>
+        </ul>
+    </div>
+    </header>
+
+    <div id="page-wrapper">
+      <div id="main-section">
+        <div class="content-section">
+          <div class="first-container">
+            <textarea
+              class="text0"
+              placeholder="제목을 입력해주세요"
+            ></textarea>
+            <!-- <div class="text2">와기 정기 스터디</div> -->
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="second-container">
+            <div class="white-box">
+              <div class="second-first-container">
+                <!-- <a href="./outcome03_web.html"> -->
+                <button class="text1">Web</button>
+                <!-- </a> -->
+                <!-- <a href="./outcome03_app.html"> -->
+                <button class="text1">App</button>
+                <!-- </a> -->
+                <!-- <a href="./outcome03_game.html"> -->
+                <button class="text1">Game</button>
+                <!-- </a> -->
+              </div>
+              <div class="black-line">
+                <textarea
+                  class="textbox"
+                  placeholder="내용을 입력해주세요"
+                ></textarea>
+              </div>
+              <div class="under">
+                <img src="static/img/photo.png" id="photo" />
+                <button class="complete">Complete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="main-footer">
+      <img src="static/img/WAGI_black.png" alt="footer-logo" />
+      <p>ⓒWAGI. 2024 All rights reserved</p>
+      <button id="login-button"><a href="login.html">LOGIN</a></button>
+    </footer>
+    <script src="static/js/menu_style.js"></script>
+    <script src="static/js/back_button.js" defer></script>
+    <script src="static/js/switch.js"></script>
+    <script src="static/js/click.js"></script>
+  </body>
+</html>
