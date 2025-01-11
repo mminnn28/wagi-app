@@ -5,12 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -23,7 +25,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // 출석 생성 코드 페이지 접근 권한
+                        .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER") // 글 작성 페이지 접근 권한
+                        .requestMatchers("/", "/login", "/signup").permitAll() // 인증되지 않은 사용자의 접근 가능 페이지
+                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll() // 정적 리소스 접근 허용
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -33,15 +38,21 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                       .logoutUrl("/logout")
-                      .logoutSuccessUrl("/login")
+                      .logoutSuccessUrl("/")
                 )
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.sendRedirect("/login"))
-                );
+                )
+
+                .authorizeRequests()
+                    .antMatchers("/attendance3").authenticated()
+                    .and()
+                    .formLogin()
+                    .and()
+                    .logout();
         return http.build();
     }
-
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =

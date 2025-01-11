@@ -1,0 +1,489 @@
+@media (min-width: 450px) {
+    * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: white;
+    }
+
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        /*align-items: center;
+        justify-content: center;*/
+        height: 80vh;
+    }
+
+    #main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 10%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+    }
+
+    #main-header > a {
+        margin-top: 40px;
+        margin-left: -30px;
+    }
+
+    #main-header #back-button {
+        height: 20px;
+    }
+
+    #main-navigation {
+        float: left;
+    }
+
+    #category_button {
+        display: none;
+    }
+
+    .menu-item {
+        list-style: none;
+        display: inline-block;
+        padding-right: 120px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    h2 {
+        margin-top: 10px;
+        padding-top: 20px;
+        font-size: 24px;
+    }
+
+    #main-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #title {
+        text-align: center;
+    }
+
+    #main-footer {
+        background-color: #9EA9D7;
+        padding: 7px;
+        text-align: center;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main-footer p {
+        margin-bottom: 0;
+        background-color: #9EA9D7;
+        color: black;
+    }
+
+    #main-footer img {
+        width: 110px;
+        background-color: #9EA9D7;
+    }
+
+    .link {
+        display: flex;
+        gap: 20px;
+    }
+
+    .link a {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #login-button {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #CCE2FF;
+        color: black;
+    }
+
+    #category_button {
+        display: none;
+    }
+
+    #slide {
+        display: none;
+    }
+
+    #slide_menu {
+        display: none;
+    }
+
+    /* Positioning the "attendance" heading */
+    h2 {
+        margin-top: -50px; /* Adjust the position upwards if needed */
+    }
+
+    /* Attendance box styles */
+    #attendance-box {
+        background-color: #C0CCFF; /* Light purple background */
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        margin-top: 20px;
+        width: 328px;
+        height: 229px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+    }
+
+    /* 인증번호 텍스트 위치 조정 */
+    .ooo {
+        position: relative;
+        top: -20px; /* 원하는 만큼 위로 이동 */
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    /* attendance-inbox 스타일 수정 */
+    #attendance-inbox {
+        background-color: #ffffff !important;
+        opacity: 0.58 !important;
+        width: 164px !important;
+        height: 65px !important;
+        border-radius: 15px !important;
+        text-align: center !important;
+        padding: 10px !important;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center!important;
+        color: #A9A9F5!important;
+        font-size: 16px!important;
+        margin-top: -10px!important;
+    }
+
+    #babywagi-icon img {
+        width: 181px;
+        height: 181px;
+        margin-bottom: 30px;
+        margin-top: -100px;
+    }
+
+    #user-info p {
+        position: absolute;
+        font-size: 30px;
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+        top: 165px;
+        margin-left: 40px;
+        line-height: 36.9px;
+        font-family: Libre Caslon Text;
+        
+    }
+    #gg{
+        
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -45px;
+        top:30px;
+        color:#000;
+        font-size: 20px;
+        line-height: 24.6px;
+        font-weight: 600;
+
+        
+    
+    }
+
+    /* Attendance button styling */
+    #attendance-button:hover {
+        background-color: #ddd;
+        color: #A9A9F5;
+        width: 100px;
+        height: 37px;
+    
+    }
+}
+
+@media (max-width: 450px) {
+    * {
+        font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    }
+
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: scroll;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: white;
+    }
+
+    #page-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 80vh; /* Full height minus header and footer */
+        padding: 10px;
+    }
+
+    #main-header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 10%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+    }
+
+    #main-header>a {
+        margin-top: 13px;
+        margin-left:-30px;
+    }
+
+    #main-header #back-button {
+        height: 25px;
+    }
+
+    #main-header > a> img {
+        width: 100px;
+        
+        
+    }
+
+    nav {
+        display: none;
+    }
+
+    #category_button {
+        width: 40px;
+        height: 35px;
+        top: 16px;
+        left: 15px;
+    }
+
+    #main-navigation {
+        display: none;
+    }
+
+    #main-section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #title {
+        text-align: center;
+    }
+
+    #main-footer {
+        background-color: #C0CCFF;
+        text-align: center;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main-footer p {
+        margin-bottom: 0;
+        background-color: #C0CCFF;
+        color: black;
+    }
+
+    #main-footer img {
+        width: 110px;
+        background-color: #C0CCFF;
+    }
+
+    .link {
+        display: flex;
+        gap: 20px;
+    }
+
+    .link a {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #login-button {
+        display: none;
+    }
+
+    .slide {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 79px;
+        right: 0;
+        bottom: 0;
+        transition: top 0.5s;
+        background-color: black;
+        max-height: 40%;
+    }
+
+    .slide.on {
+        left: 0;
+    }
+
+    .slide ul li {
+        color: white;
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        padding-left: 50px;
+    }
+
+    /* Attendance box styles */
+    #attendance-box {
+        background-color: #C0CCFF;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        margin-top: 60px;
+        width: 328px;
+        height: 229px;
+    }
+    #attendance-button {
+        background-color: #fff;
+        color:#C0CCFF;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top:-60px;
+    }
+
+    #attendance-inbox {
+        
+        top: 165px;
+        background-color: #ffffff;
+        opacity: 0.58;
+        width: 164px;
+        height: 56px;
+        border-radius: 20px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    #babywagi-icon img {
+        width: 181px;
+        height: 181px;
+        margin-bottom: 30px;
+        margin-top: -100px;
+    }
+
+    /* User information styles */
+    #user-info p {
+        position: absolute;
+        font-size: 30px;
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+        top: 165px;
+        margin-left: 40px;
+        line-height: 36.9px;
+        font-family: Libre Caslon Text;
+        
+    }
+    #gg{
+        
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -45px;
+        top:30px;
+        color:#000;
+        font-size: 20px;
+        line-height: 24.6px;
+        font-weight: 600;
+
+        
+    
+    }
+   
+
+    /* Attendance button styling */
+    #attendance-button:hover {
+        background-color: #ddd;
+        color: #A9A9F5;
+        width: 100px;
+        height: 37px;
+    
+    }
+}

@@ -1,0 +1,441 @@
+@media (min-width: 450px){
+    * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+    
+    body{
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }/*Notice_main.html 때문에 *에서 body로 변경함*/
+    
+    body {
+        overflow-x: hidden; 
+    }
+    
+    a {
+        text-decoration-line: none;
+        color: white;
+    }
+    
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    
+    #main-header {
+        position: sticky;
+        top:0;
+        z-index: 1;
+        width: 140%;/**/
+        height: 10%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        z-index: 999;/*Notice main쪽 z index 설정때문에 이거 맞춰둡니다*/
+    }
+
+    
+    #main-header>a{
+        margin-top: 40px;
+    }
+    
+    #main-navigation {
+        float: left; 
+    }
+    
+    #category_button{
+        display: none;
+    }
+    
+    .menu-item {
+        list-style: none;
+        display: inline-block;
+        padding-right: 120px;
+        font-weight: bold;
+        font-size: 20px;
+        
+    }
+
+    #main-section {
+        position: relative;
+        top: 13px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10px;
+    }
+
+    .content-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .content-section {
+        align-items: left;
+    }
+
+    .icon {
+        width: 20px;
+        padding-right: 15px;
+    }
+
+    #whiteRectangle {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+    }
+    
+    .first-container, .second-container {
+        display: flex;
+        align-items: center;
+        /* justify-content: left; */
+        margin: 10px 0;
+        justify-content: flex-start;
+    }
+
+
+    #title {
+        text-align: center;
+    }
+    
+    #main-footer {
+        background-color: #9EA9D7;
+        padding: 7px;
+        text-align: center;
+        color: white;
+        position: flex;
+        transform : translateY(0%);
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #main-footer p {
+        margin-bottom: 0;
+        background-color: #9EA9D7;
+        color: black;
+    }
+    
+    #main-footer img {
+        width: 110px;
+        background-color: #9EA9D7;
+    }
+    
+    .link {
+        display: flex;
+        gap: 20px; 
+    }
+    
+    .link a {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    #login-button {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #CCE2FF;
+        color: black;
+    }
+    
+    #main-footer div {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #category_button{
+        display: none;
+    }
+    
+    #slide{
+        display: none;
+    }
+    
+    #slide_menu{
+        display:none;
+    }
+    
+    }
+    
+@media (max-width: 450px) {
+    * {
+        font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    }
+    
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: scroll;
+    }
+    
+    a {
+         text-decoration-line: none;
+         color: white;
+    }
+    
+    #page-wrapper {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */ /*이걸 없애야 왼쪽으로 정렬됨*/
+        /* justify-content: center; */ /*이걸 없애야 위쪽으로 정렬됨*/
+        height: 80vh; /*전체화면 길이*/
+    }
+    
+    #main-header {
+        position: sticky;
+        top: 0;
+        width: 100%; /**/
+        height: 10%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+    }
+
+    #main-header>a {
+        margin: 13px;
+    }
+
+    #main-header #back-button {
+        height: 20px;
+    }
+    
+    #main-header #logo {
+        width: 100px;
+        margin-left: 30px;
+        max-height: 40px;
+    }
+    
+    #main-header #category_button {
+        height: 30px;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    #category_button {
+        width: 40px;
+        height: 35px;
+        top: 16px;
+        left: 15px; 
+
+    }
+    
+    #main-navigation {
+        display: none;
+    }
+
+    /* 이건 지우지 말기 */
+    /* .icon {
+        width: 13px;
+        margin-left: 20px;
+        margin-right: 10px;
+    } */
+
+    #main-section {
+        position: relative;
+        top: 13px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+       
+    }
+    
+    .content-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .first-container{
+        font-size: 25px;
+    }
+    
+
+    .outcomeText{
+        margin-left: 10px;
+    }
+
+    .circleText{
+        margin-left: 30px;
+        margin-right: 10px;
+    }
+
+    .first-container{
+        margin-left: 20px;
+    }
+
+    .second-container{
+    }
+
+    .third-container{
+        margin-left: 50px;
+        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        font-size: 15px;
+    }
+
+    .text-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* justify-content: left; */
+        margin-top: 30px;
+    }
+
+    .categoryText{
+        height: 10px;
+            width: 100%;
+            border-radius: 70%;
+            background-color: #cce2ff90;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            margin-top: 5px;
+    }
+
+    #line{
+        width: 290px;
+        height: auto;
+        margin-left: 50px;
+        margin-top: 5px;
+    }
+
+    #whiteRectangle{
+        margin: 20px 0;
+        height: 412px;
+        width: 359px;
+        border-radius: 10%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .first-container, .second-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin: 10px 0;
+    }
+
+    .list-container {
+        max-height: 200px;
+        overflow-y: auto;
+        width: 100%;
+    }
+    
+    #title {
+        text-align: center;
+    }
+    
+    #main-footer {
+        background-color: #C0CCFF;
+        text-align: center;
+        color: white;
+        position: flex;
+        transform : translateY(0%);
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #main-footer p {
+        margin-bottom: 0;
+        background-color: C0CCFF;
+        color: black;
+    }
+    
+    #main-footer img {
+        width: 110px;
+        background-color: C0CCFF;
+    }
+
+    .link {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .link a {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    #login-button {
+        display: none;
+    }
+    
+    .slide {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 79px;
+        right: 0;
+        bottom: 0;
+        transition: top 0.5s;
+        background-color: black;
+
+        max-height: 40%;
+
+    }
+        
+    .slide.on {
+        left: 0;
+    }
+        
+    .slide ul li {
+        color: white;
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        padding-left: 50px;
+    }
+    
+    }

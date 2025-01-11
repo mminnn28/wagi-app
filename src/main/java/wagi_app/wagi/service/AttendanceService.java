@@ -4,13 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import wagi_app.wagi.DTO.AttendanceCreateDTO;
 import wagi_app.wagi.entity.Attendance;
+import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.AttendanceRepository;
+import wagi_app.wagi.repository.UserRepository;
 
 import java.security.SecureRandom;
 
 @Service
 @RequiredArgsConstructor
 public class AttendanceService {
+
+    private final UserRepository userRepository;
     private final AttendanceRepository attendanceRepository;
 
     //출석 인증번호 랜덤 5자리 수 생성
