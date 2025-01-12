@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/base.css">
-    <link rel="stylesheet" href="./static/css/join.css">
+    <link rel="stylesheet" th:href="@{css/base.css}">
+    <link rel="stylesheet" th:href="@{css/join.css}">
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header id="main-header">
-        <a href="./login.html">
+        <a th:href="@{/home}">
             <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-                <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+                <img src="img/whiteBack.svg" alt="back" id="back-button">
             </a>
-        <a href="home.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo">
+        <a th:href="@{/home}">
+            <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,9 +26,8 @@
         </nav> 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
-
         <div class="slide" id="slide">
             <ul id="slide_menu">
                 <li class="menu-item"><a href="./notice.html">Notice</a></li>
@@ -44,40 +42,30 @@
         </div>
         <!-- 모바일 전용 -->
     </header>
-    
     <p><h2>&nbsp;&nbsp;✦&nbsp;Join</h2></p>
-
-    
     <div id="page-wrapper">
         <div id="main-section">
             <div id="join-section">
-                
                  <form method="post" action="" id="join-form"><br>
-                    <input type="id" name="id" placeholder="ID" ><br>
-                    <input type="text" name="name" placeholder="Name"><br>
-                    <input type="text" name="studentid" placeholder="StudentId"><br>
+                    <input type="text" name="userId" placeholder="ID" ><br>
+                    <input type="text" name="username" placeholder="Name"><br>
+                    <input type="text" name="studentId" placeholder="StudentId"><br>
                     <input type="text" name="major" placeholder="Major"><br>
-                    <input type="password" name="Password" placeholder="Password"><br>
-                    <input type="password" name="Password" placeholder="Password2"><br>
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <input type="password" name="password2" placeholder="Password2"><br>
                     <input type="submit" value="join">
-                    
                 </form>
-                
-                    
-            
-
+            </div>
+            <div th:if="${errorMessage}" style="color: white;">
+                <p th:text="${errorMessage}"></p>
             </div>
         </div>
-    </div> 
-    
+    </div>
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="logo">
-
+        <img src="img/WAGI_black.png" alt="logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
-
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
-    
+    <script src="js/menu_style.js"></script>
 </body>
 </html>
