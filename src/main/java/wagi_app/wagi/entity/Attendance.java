@@ -4,7 +4,6 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Getter
 @Setter
 @Entity
@@ -23,7 +22,7 @@ public class Attendance extends BaseTimeEntity {
     @JoinColumn(name = "userId")
     private User user; //fk (유저 pk)
 
-    private Integer attendance; //출결 (1: 출석, 0: 지각, null: 결석)
+    private String attendance; //출결 (1: 출석, 0: 지각, null: 결석)
 
     public void setUserId(String userId) {
     }

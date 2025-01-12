@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/base.css">
-    <link rel="stylesheet" href="./static/css/login.css">
+    <link rel="stylesheet" th:href="@{css/base.css}">
+    <link rel="stylesheet" th:href="@{css/login.css}">
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header id="main-header">
-        <a href="./login.html">
+        <a th:href="@{/login}">
             <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-                <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+                <img src="img/whiteBack.svg" alt="back" id="back-button">
             </a>
-        <a href="home.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo">
+        <a th:href="@{/home}">
+            <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +27,7 @@
         </nav> 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
 
         <div class="slide" id="slide">
@@ -53,25 +53,25 @@
             <div id="login-section">
                 
                  <form method="post" action="" id="login-form">
-                    <input type="id" name="userName" placeholder="ID" ><br>
-                    <input type="password" name="userPassword" placeholder="Password"><br>
-                    <a href="./join.html" id="join">join</a><br>
+                    <input type="text" name="userId" placeholder="ID" ><br>
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <a th:href="@{/signup}" id="join">join</a><br>
                     <input type="submit" value="login">
                     
-                </form>
+                 </form>
 
             </div>
         </div>
     </div> 
     
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="logo">
+        <img src="img/WAGI_black.png" alt="logo">
 
         <p>ⓒWAGI. 2024 All rights reserved</p>
 
-        <button id="login-button"><a href="login.html">LOGIN</a></button>
+        <button id="login-button"><a th:href="@{/login}">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
+    <script src="js/menu_style.js"></script>
     
 </body>
 </html>

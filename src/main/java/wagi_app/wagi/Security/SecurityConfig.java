@@ -43,14 +43,7 @@ public class SecurityConfig {
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.sendRedirect("/login"))
-                )
-
-                .authorizeRequests()
-                    .antMatchers("/attendance3").authenticated()
-                    .and()
-                    .formLogin()
-                    .and()
-                    .logout();
+                );
         return http.build();
     }
     @Bean
