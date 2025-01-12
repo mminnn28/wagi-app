@@ -4,7 +4,6 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Getter
 @Setter
 @Entity
