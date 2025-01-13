@@ -464,18 +464,17 @@
     display: none;
   }
 
-  .slide {
-    width: 100%;
-    position: fixed;
-    left: -100%;
-    top: 79px;
-    right: 0;
-    bottom: 0;
-    transition: top 0.5s;
-    background-color: black;
-
-    max-height: 40%;
-  }
+   .slide {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 59px;
+        right: 0;
+        bottom: 0;
+        transition: top 0.5s;
+        background-color: black;
+        max-height: 55%;
+    }
 
   .slide.on {
     left: 0;
