@@ -10,12 +10,11 @@
 </head>
 <body>
     <header id="main-header">
-        <a href="javascript:history.back()">
-        <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="img/whiteBack.svg" alt="back" id="back-button">
-        </a>
-        <a href="main.html">
-            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
+        <button id="back-button">
+            <img src="img/whiteBack.svg" alt="back">
+        </button>
+        <a th:href="@{/}">
+            <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
