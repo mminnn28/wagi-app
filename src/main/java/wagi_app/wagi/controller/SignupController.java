@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import wagi_app.wagi.DTO.UserCreateDto;
 import wagi_app.wagi.service.UserService;
 
@@ -15,7 +16,7 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String signupForm() {
-        return "signup";
+        return "user/join";
     }
 
     @PostMapping("/signup")
@@ -23,9 +24,15 @@ public class SignupController {
         try {
             userService.saveUser(userCreateDto);
             return "redirect:/login"; // 성공하면 로그인 페이지로 이동
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", "회원가입에 실패했습니다.\n" + e.getMessage());
-            return "signup"; // 실패하면 다시 회원가입 페이지로
+            return "user/join"; // 에러 메시지 띄우기
+        } catch (ResponseStatusException e) {
+            model.addAttribute("errorMessage", "회원가입에 실패했습니다.\n" + e.getMessage());
+            return "user/join";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "회원가입에 실패했습니다.");
+            return "user/join";
         }
     }
 
