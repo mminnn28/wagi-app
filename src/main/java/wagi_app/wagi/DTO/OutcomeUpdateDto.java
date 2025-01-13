@@ -15,4 +15,6 @@ public class OutcomeUpdateDto {
     private String content;
 
     private MultipartFile imageFile;
+
+    private String category;
 }

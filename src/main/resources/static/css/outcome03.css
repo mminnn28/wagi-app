@@ -280,6 +280,11 @@
     margin-left: 15px;
   }
 
+  /*.category-btn.active {*/
+  /*  background-color: #4CAF50; !* 활성 상태 색상 예시 *!*/
+  /*  color: white;*/
+  /*}*/
+
   /* .text1{
         inline-size: 50px;
         border: solid 1px black;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,10 @@
     <header id="main-header">
         <a href="javascript:history.back()">
         <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+            <img src="img/whiteBack.svg" alt="back" id="back-button">
         </a>
         <a href="main.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo">
+            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +27,7 @@
 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
         <div class="slide" id="slide">
             <ul id="slide_menu">
@@ -42,32 +42,36 @@
             </ul>
         </div>
     </header>
-    
+
     <div id="page-wrapper">
         <div id="main-section">
             <div class="content-section">
                 <div class="first-container">
-                    <div class="text1">App</div>
-                    <div class="text2">Crystal-Link</div>
+                    <div class="text1" th:text="${category}">App</div>
+                    <div class="text2" th:text="${outcome.title}">Crystal-Link</div>
                 </div>
             </div>
             <div class="content-section">
                 <div class="second-container">
                     <div class="white-box">
-                        <img src="static/img/10월짤.jpg" alt="Image" class="project-image">
-                        <textarea class="textbox" placeholder="여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등"></textarea>
+                        <img th:src="${outcome.imagePath}" alt="Project Image" class="project-image">
+                        <textarea class="textbox" th:text="${outcome.content}" readonly></textarea>
                     </div>
                 </div>
             </div>
             <div class="button-container">
-                <button id="rewrite-button"><a href="">수정</a></button>
-                <button id="delete-button"><a href="">삭제</a></button>
+                <a th:href="@{/outcome/manager/edit/{id}(id=${outcome.id})}" class="button">
+                    <button type="button" id="rewrite-button">수정</button>
+                </a>
+                <form th:action="@{/outcome/manager/delete/{id}(id=${outcome.id})}" method="post">
+                    <button type="submit" id="delete-button">삭제</button>
+                </form>
             </div>
         </div>
-    </div>    
-    
+    </div>
+
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="footer-logo">
+        <img src="img/WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>

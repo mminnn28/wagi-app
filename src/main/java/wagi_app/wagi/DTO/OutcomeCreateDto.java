@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter
 @Setter
 public class OutcomeCreateDto {
-
     @NotBlank(message = "제목을 입력해주세요.")
     private String title;
 
@@ -16,4 +15,7 @@ public class OutcomeCreateDto {
     private String content;
 
     private MultipartFile imageFile;
+
+    @NotBlank(message = "카테고리를 선택해주세요.")
+    private String category;
 }
