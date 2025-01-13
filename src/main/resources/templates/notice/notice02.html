@@ -62,7 +62,7 @@
                 <div class="content-section list-container">
                     <div class="third-container" th:each="notice : ${notices}">
                         <div class="text1" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></div>
-                        <a th:href="@{./notice03.html(id=${notice.id})}">
+                        <a th:href="@{/notice/detail/{id}(id=${notice.id})}">
                             <div class="text2" th:text="${notice.title}"></div>
                         </a>
                         <img src="img/line.png" alt="line" id="line"/>
@@ -70,7 +70,7 @@
                 </div>
             </div>
                 <button id="write-button">
-                    <a href="notice04_01.html">공지사항 작성</a>
+                    <a href="notice/manager/create" class="create-notice-btn">공지사항 작성</a>
                 </button>
         </div>
     </div>

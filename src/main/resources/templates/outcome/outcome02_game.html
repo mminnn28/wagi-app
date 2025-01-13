@@ -49,13 +49,6 @@
                 <div class="first-container">
                     <div class="text1" th:text="${category}">Game</div>
                     <div class="text2" th:text="${outcome.title}">Crystal-Link</div>
-                    <!-- 관리자 권한 확인 후 버튼 표시 -->
-                    <div class="admin-buttons" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a th:href="@{/outcome/manager/edit/{id}(id=${outcome.id})}" class="edit-btn">수정</a>
-                        <form th:action="@{/outcome/manager/delete/{id}(id=${outcome.id})}" method="post" style="display: inline;">
-                            <button type="submit" class="delete-btn" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class="content-section">
@@ -67,8 +60,12 @@
                 </div>
             </div>
             <div class="button-container">
-                <button id="rewrite-button"><a href="">수정</a></button>
-                <button id="delete-button"><a href="">삭제</a></button>
+                <a th:href="@{/outcome/manager/edit/{id}(id=${outcome.id})}" class="button">
+                    <button type="button" id="rewrite-button">수정</button>
+                </a>
+                <form th:action="@{/outcome/manager/delete/{id}(id=${outcome.id})}" method="post">
+                    <button type="submit" id="delete-button">삭제</button>
+                </form>
             </div>
         </div>
     </div>

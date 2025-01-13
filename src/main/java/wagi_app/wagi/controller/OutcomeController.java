@@ -107,15 +107,6 @@ public class OutcomeController {
         return "redirect:/outcome";
     }
 
-//    // 관리자 - 카테고리별 결과물 생성 페이지
-//    @GetMapping("/manager/create/{category}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    public String createOutcomeCategoryForm(@PathVariable String category, Model model) {
-//        model.addAttribute("category", category);
-//        model.addAttribute("outcomeCreateDto", new OutcomeCreateDto());
-//        return "outcome/outcome03_" + category.toLowerCase();
-//    }
-
     // 관리자 - 결과물 수정 페이지
     @GetMapping("/manager/edit/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
