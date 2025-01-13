@@ -61,12 +61,12 @@ public class NoticeService {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
 
-        // ADMIN 또는 MANAGER 역할을 가진 사용자는 모든 공지사항을 삭제할 수 있도록 수정
+        // ADMIN 또는 MANAGER 역할을 가진 사용자는 모든 공지사항을 수정할 수 있도록 수정
         boolean isAdmin = user.getRole().equals("ADMIN");
         boolean isManager = user.getRole().equals("MANAGER");
 
         if (!isAdmin && !isManager) {
-            throw new SecurityException("삭제 권한이 없습니다.");
+            throw new SecurityException("수정 권한이 없습니다.");
         }
 
         // 기존 이미지 삭제 후 새 이미지 저장

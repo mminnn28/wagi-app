@@ -1,3 +1,25 @@
+function toggleEdit() {
+    const editForm = document.querySelector('.edit-form');
+    const editBtn = document.querySelector('.edit-btn');
+    const saveBtn = document.querySelector('.save-btn');
+    const titleInput = document.querySelector('.text2');
+    const textbox = document.querySelector('.textbox');
+
+    if (editForm.style.display === 'none') {
+        editForm.style.display = 'block';
+        editBtn.style.display = 'none';
+        saveBtn.style.display = 'inline-block';
+        titleInput.removeAttribute('readonly');
+        textbox.removeAttribute('readonly');
+    } else {
+        editForm.style.display = 'none';
+        editBtn.style.display = 'inline-block';
+        saveBtn.style.display = 'none';
+        titleInput.setAttribute('readonly', true);
+        textbox.setAttribute('readonly', true);
+    }
+}
+
 document.getElementById('imageFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {

@@ -12,10 +12,10 @@
     <header id="main-header">
         <a href="javascript:history.back()">
         <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+            <img src="img/whiteBack.svg" alt="back" id="back-button">
         </a>
         <a href="main.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo">
+            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +27,7 @@
 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
         <div class="slide" id="slide">
             <ul id="slide_menu">
@@ -58,11 +58,15 @@
                     </div>
                 </div>
                 <div id="whiteRectangle">
-                    <img src="static/img/purpleBack.png" alt="Back" id="back-button1">
-                    <a href="./outcome02_web.html">
-                        <img src="static/img/커햄1.jpg" alt="Ham" id="ham-image1">
-                    </a>
-                    <img src="static/img/purpleNext.png" alt="Next" id="next-button1">
+                    <img src="img/purpleBack.png" alt="Back" id="back-button1">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(webOutcomes)}">
+                        <div th:each="outcome, iterStat : ${webOutcomes}">
+                            <a th:href="@{'/outcome/web/' + ${outcome.id}}">
+                                <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
+                            </a>
+                        </div>
+                    </div>
+                    <img src="img/purpleNext.png" alt="Next" id="next-button1">
                 </div>
             </div>
             <div class="content-section">
@@ -73,11 +77,15 @@
                     </div>
                 </div>
                 <div id="whiteRectangle">
-                    <img src="static/img/purpleBack.png" alt="Back" id="back-button2">
-                    <a href="./outcome02_app.html">
-                        <img src="static/img/커햄2.jpg" alt="Ham" id="ham-image2">
-                    </a>
-                    <img src="static/img/purpleNext.png" alt="Next" id="next-button2">
+                    <img src="img/purpleBack.png" alt="Back" id="back-button2">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(appOutcomes)}">
+                        <div th:each="outcome, iterStat : ${appOutcomes}">
+                            <a th:href="@{'/outcome/app/' + ${outcome.id}}">
+                                <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
+                            </a>
+                        </div>
+                    </div>
+                    <img src="img/purpleNext.png" alt="Next" id="next-button2">
                 </div>
             </div>
             <div class="content-section">
@@ -88,18 +96,22 @@
                     </div>
                 </div>
                 <div id="whiteRectangle">
-                    <img src="static/img/purpleBack.png" alt="Back" id="back-button3">
-                    <a href="./outcome02_game.html">
-                        <img src="static/img/커햄3.jpg" alt="Ham" id="ham-image3">
-                    </a>
-                    <img src="static/img/purpleNext.png" alt="Next" id="next-button3">
+                    <img src="img/purpleBack.png" alt="Back" id="back-button3">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(gameOutcomes)}">
+                        <div th:each="outcome, iterStat : ${gameOutcomes}">
+                            <a th:href="@{'/outcome/game/' + ${outcome.id}}">
+                                <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
+                            </a>
+                        </div>
+                    </div>
+                    <img src="img/purpleNext.png" alt="Next" id="next-button3">
                 </div>
             </div>
         </div>
     </div>    
     
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="footer-logo">
+        <img src="img/WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
