@@ -30,7 +30,7 @@ public class NoticeController {
     public String getNoticeList(Model model) {
         List<Notice> notices = noticeService.getAllNotices();
         model.addAttribute("notices", notices);
-        return "notice/notice";
+        return "notice/notice02";
     }
 
     // 관리자용 Notice 생성 페이지

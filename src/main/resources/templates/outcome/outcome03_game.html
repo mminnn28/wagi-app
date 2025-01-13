@@ -45,32 +45,46 @@
 
     <div id="page-wrapper">
         <div id="main-section">
-            <form id="outcomeForm" th:action="@{/outcome/manager/create}" method="post" enctype="multipart/form-data">
+            <form id="outcomeForm" th:action="@{${outcome != null ? '/outcome/manager/edit/' + outcome.id : '/outcome/manager/create'}}" method="post" enctype="multipart/form-data">
                 <div class="content-section">
                     <div class="first-container">
-                        <div class="text0" th:text="${outcome != null ? outcome.title : '새 결과물 작성'}">Crystal-Link</div>
+                        <input type="text" name="title" class="text0"
+                               th:value="${outcome != null ? outcome.title : ''}"
+                               placeholder="제목을 입력해주세요" required>
                     </div>
                 </div>
                 <div class="content-section">
                     <div class="second-container">
                         <div class="white-box">
                             <div class="second-first-container">
-                                <button th:class="${category == 'Web' ? 'text1 selected' : 'text2'}" disabled>Web</button>
-                                <button th:class="${category == 'App' ? 'text1 selected' : 'text2'}" disabled>App</button>
-                                <button th:class="${category == 'Game' ? 'text1 selected' : 'text2'}" disabled>Game</button>
-                                <input type="hidden" name="category" th:value="${category}">
+                                <button type="button" class="category-btn text2" data-category="Web"
+                                        th:class="${category == 'Web' ? 'category-btn text1 selected' : 'category-btn text2'}">Web</button>
+                                <button type="button" class="category-btn text2" data-category="App"
+                                        th:class="${category == 'App' ? 'category-btn text1 selected' : 'category-btn text2'}">App</button>
+                                <button type="button" class="category-btn text2" data-category="Game"
+                                        th:class="${category == 'Game' ? 'category-btn text1 selected' : 'category-btn text2'}">Game</button>
+                                <input type="hidden" name="category" id="selectedCategory" th:value="${category}">
                             </div>
                             <div class="black-line">
-                                <textarea name="content" class="textbox" required
-                                          th:text="${outcome != null ? outcome.content : ''}"
-                                          placeholder="내용을 입력해주세요"></textarea>
+                            <textarea name="content" class="textbox" required
+                                      th:text="${outcome != null ? outcome.content : ''}"
+                                      placeholder="내용을 입력해주세요"></textarea>
                             </div>
                             <div class="under">
                                 <div class="photo-link">
-                                    <input type="file" id="imageFile" name="imageFile" accept="image/*" style="display: none;">
-                                    <img src="static/img/photo.png" id="photo" onclick="document.getElementById('imageFile').click()">
-                                    <div class="text3" id="fileName" th:text="${outcome != null ? outcome.imagePath : '이미지를 선택해주세요'}">
-                                        Crystal-Link.png</div>
+                                    <!-- 기존 이미지 미리보기 div 추가 -->
+                                    <div id="imagePreview">
+                                        <img th:if="${outcome != null && outcome.imagePath != null}"
+                                             th:src="@{${outcome.imagePath}}"
+                                             style="max-width: 200px"
+                                             alt="Current Image">
+                                    </div>
+                                    <!-- 이미지 파일 input -->
+                                    <input type="file" name="imageFile" id="imageFile" accept="image/*">
+                                    <label for="imageFile">
+                                        <img src="/img/photo.png" id="photo">
+                                        <div class="text3">이미지 선택</div>
+                                    </label>
                                 </div>
                                 <button type="submit" class="complete">Complete</button>
                             </div>
@@ -89,7 +103,7 @@
     <script th:src="@{~/js/menu_style.js}"></script>
     <script th:src="@{~/js/back_button.js}" defer></script>
     <script th:src="@{~/js/switch.js}"></script>
-    <script th:src="@{~/js/imgPlus.js}"></script>
+    <script th:src="@{~/js/changeCategory.js}"></script>
 
 </body>
 </html>
