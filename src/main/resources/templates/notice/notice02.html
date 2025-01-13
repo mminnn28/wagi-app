@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,11 @@
 </head>
 <body>
     <header id="main-header">
-        <a href="javascript:history.back()">
-        <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="img/whiteBack.svg" alt="back" id="back-button">
-        </a>
-        <a href="main.html">
-            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
+        <button id="back-button">
+            <img src="img/whiteBack.svg" alt="back">
+        </button>
+        <a th:href="@{/}">
+            <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -69,9 +68,11 @@
                     </div>
                 </div>
             </div>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
                 <button id="write-button">
                     <a href="notice/manager/create" class="create-notice-btn">공지사항 작성</a>
                 </button>
+            </div>
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 @media (min-width: 450px){
     * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
-    
+
     body{
         background-color: black;
         color: white;
@@ -8,16 +8,16 @@
         padding: 0;
         box-sizing: border-box;
     }/*Notice_main.html 때문에 *에서 body로 변경함*/
-    
+
     body {
-        overflow-x: hidden; 
+        overflow-x: hidden;
     }
-    
+
     a {
         text-decoration-line: none;
         color: white;
     }
-    
+
     #page-wrapper {
         display: flex;
         flex-direction: column;
@@ -25,7 +25,7 @@
         justify-content: center;
         height: 120vh;
     }
-    
+
     #main-header {
         position: sticky;
         top:0;
@@ -40,28 +40,45 @@
         z-index: 999;/*Notice main쪽 z index 설정때문에 이거 맞춰둡니다*/
     }
 
-    
+    #imagePreview {
+        width: 300px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    #imagePreview img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
     #main-header>a{
         margin-top: 40px;
     }
-    
+
     #main-navigation {
-        float: left; 
+        float: left;
     }
-    
+
     #category_button{
         display: none;
     }
-    
+
     .menu-item {
         list-style: none;
         display: inline-block;
         padding-right: 120px;
         font-weight: bold;
         font-size: 20px;
-        
+
     }
-    
+
     #main-section {
         position: absolute;
         top: 50%;
@@ -69,7 +86,7 @@
         transform: translate(-50%, -50%);
         flex: 1;
         display: flex;
-        
+
     }
 
     .white-box {
@@ -89,7 +106,7 @@
         width: 300px;
         height: auto;
     }
-    
+
     .textbox {
         width: 300px;
         height: 150px;
@@ -104,7 +121,7 @@
     #title {
         text-align: center;
     }
-    
+
     #main-footer {
         background-color: #9EA9D7;
         padding: 7px;
@@ -118,23 +135,23 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     #main-footer p {
         margin-bottom: 0;
         background-color: #9EA9D7;
         color: black;
     }
-    
+
     #main-footer img {
         width: 110px;
         background-color: #9EA9D7;
     }
-    
+
     .link {
         display: flex;
-        gap: 20px; 
+        gap: 20px;
     }
-    
+
     .link a {
         width: 30px;
         height: 30px;
@@ -145,13 +162,13 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .link img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-    
+
     #login-button {
         padding: 10px 20px;
         border: none;
@@ -163,31 +180,31 @@
         background-color: #CCE2FF;
         color: black;
     }
-    
+
     #main-footer div {
         display: flex;
         justify-content: center;
     }
-    
+
     #category_button{
         display: none;
     }
-    
+
     #slide{
         display: none;
     }
-    
+
     #slide_menu{
         display:none;
     }
-    
-    }
-    
+
+}
+
 @media (max-width: 450px) {
     * {
         font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     }
-    
+
     body {
         background-color: black;
         color: white;
@@ -196,10 +213,10 @@
         box-sizing: border-box;
         overflow-x: scroll;
     }
-    
+
     a {
-         text-decoration-line: none;
-         color: white;
+        text-decoration-line: none;
+        color: white;
     }
 
 
@@ -210,7 +227,7 @@
         flex-direction: column;
         height: 78vh;
     }
-    
+
     #main-header {
         position: sticky;
         top: 0;
@@ -228,34 +245,55 @@
     }
 
     #main-header #back-button {
-        height: 20px;
+        height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
-    
+
+    #imagePreview {
+        width: 300px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    #imagePreview img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
     #main-header #logo {
         width: 100px;
         margin-left: 30px;
         max-height: 40px;
     }
-    
+
     #main-header #category_button {
         height: 30px;
     }
-    
+
     nav {
         display: none;
     }
-    
+
     #category_button {
         width: 40px;
         height: 35px;
         top: 16px;
-        left: 15px; 
+        left: 15px;
 
     }
-    
+
     #main-navigation {
         display: none;
-    } 
+    }
 
     #main-section {
         position: absolute;
@@ -283,7 +321,7 @@
         /* flex-direction: row; */
         gap: 10px;
         margin-left: 15px;
-    } 
+    }
 
     .text1{
         inline-size: 50px;
@@ -338,14 +376,14 @@
         overflow-x: hidden;
         padding: 10px;
     }
-    
+
     .image-box {
         display: flex;
         width: 90%;
         overflow-x: auto;
         gap: 10px;
     }
-    
+
 
     .project-image {
         width: 150px;
@@ -354,7 +392,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .textbox {
         width: 300px;
         height: 300px;
@@ -408,7 +446,7 @@
     #title {
         text-align: center;
     }
-    
+
     #main-footer {
         background-color: #C0CCFF;
         text-align: center;
@@ -421,13 +459,13 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     #main-footer p {
         margin-bottom: 0;
         background-color: C0CCFF;
         color: black;
     }
-    
+
     #main-footer img {
         width: 110px;
         background-color: C0CCFF;
@@ -437,7 +475,7 @@
         display: flex;
         gap: 20px;
     }
-    
+
     .link a {
         width: 30px;
         height: 30px;
@@ -448,17 +486,17 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .link img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-    
+
     #login-button {
         display: none;
     }
-    
+
     .slide {
         width: 100%;
         position: fixed;
@@ -470,11 +508,11 @@
         background-color: black;
         max-height: 55%;
     }
-        
+
     .slide.on {
         left: 0;
     }
-        
+
     .slide ul li {
         color: white;
         display: inline-block;
@@ -482,5 +520,5 @@
         padding: 10px;
         padding-left: 50px;
     }
-    
-    }
+
+}
