@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,9 +68,11 @@
                     </div>
                 </div>
             </div>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
                 <button id="write-button">
                     <a href="notice/manager/create" class="create-notice-btn">공지사항 작성</a>
                 </button>
+            </div>
         </div>
     </div>
 

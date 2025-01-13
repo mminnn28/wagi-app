@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,12 +64,14 @@
                 </div>
             </div>
             <div class="button-container">
-                <a th:href="@{/outcome/manager/edit/{id}(id=${outcome.id})}" class="button">
-                    <button type="button" id="rewrite-button">수정</button>
-                </a>
-                <form th:action="@{/outcome/manager/delete/{id}(id=${outcome.id})}" method="post">
-                    <button type="submit" id="delete-button">삭제</button>
-                </form>
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+                    <a th:href="@{/outcome/manager/edit/{id}(id=${outcome.id})}" class="button">
+                        <button type="button" id="rewrite-button">수정</button>
+                    </a>
+                    <form th:action="@{/outcome/manager/delete/{id}(id=${outcome.id})}" method="post">
+                        <button type="submit" id="delete-button">삭제</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
