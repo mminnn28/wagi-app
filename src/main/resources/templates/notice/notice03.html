@@ -61,11 +61,10 @@
                     </div>
                 </div>
             </div>
-            <!-- 수정 및 삭제 버튼 -->
             <div class="button-container">
-                <a th:href="@{/notice/manager/edit/{id}(id=${notice.id})}" class="edit-button">수정</a>
+                <button th:href="@{/notice/manager/edit/{id}(id=${notice.id})}" id="rewrite-button"><a href="">수정</a></button>
                 <form th:action="@{/notice/manager/delete/{id}(id=${notice.id})}" method="post">
-                    <button type="submit" class="delete-button">삭제</button>
+                    <button type="submit" id="delete-button"><a href="">삭제</a></button>
                 </form>
             </div>
         </div>

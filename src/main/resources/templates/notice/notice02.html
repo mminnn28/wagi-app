@@ -55,11 +55,10 @@
                     <div class="text-container">
                         <div class="circleText">●</div>
                         <a href="./notice.html">
-                            <div class="categoryText">정기활동</div>
+                            <div class="categoryText">공지사항</div>
                         </a>
                     </div>
                 </div>
-
                 <div class="content-section list-container">
                     <div class="third-container" th:each="notice : ${notices}">
                         <div class="text1" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></div>
@@ -70,6 +69,9 @@
                     </div>
                 </div>
             </div>
+                <button id="write-button">
+                    <a href="notice04_01.html">공지사항 작성</a>
+                </button>
         </div>
     </div>
 
