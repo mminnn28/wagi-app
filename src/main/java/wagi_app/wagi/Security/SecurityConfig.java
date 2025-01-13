@@ -27,8 +27,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole("ADMIN") // 출석 생성 코드 페이지 접근 권한
                         .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER") // 글 작성 페이지 접근 권한
+                        .requestMatchers("/notice/manager/**").hasAnyRole("ADMIN", "MANAGER")
                         .requestMatchers("/", "/login", "/signup").permitAll() // 인증되지 않은 사용자의 접근 가능 페이지
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll() // 정적 리소스 접근 허용
+                        .requestMatchers("/notice").permitAll()
+                        .requestMatchers("/notice/detail/**").permitAll()  // 상세 페이지도 허용
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

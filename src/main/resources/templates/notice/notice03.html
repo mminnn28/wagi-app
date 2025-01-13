@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/notice03.css">
+    <link rel="stylesheet" th:href="@{~/css/notice03.css}">
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
@@ -12,10 +12,10 @@
     <header id="main-header">
         <a href="javascript:history.back()">
         <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+            <img src="img/whiteBack.svg" alt="back" id="back-button">
         </a>
         <a href="main.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo">
+            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +27,7 @@
 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
         <div class="slide" id="slide">
             <ul id="slide_menu">
@@ -42,38 +42,43 @@
             </ul>
         </div>
     </header>
-    
+
     <div id="page-wrapper">
         <div id="main-section">
             <div class="content-section">
                 <div class="first-container">
-                    <div class="text1">2024/09/22</div>
-                    <div class="text2">와기 정기 스터디</div>
+                    <div class="text1" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></div>
+                    <div class="text2" th:text="${notice.title}"></div>
                 </div>
             </div>
             <div class="content-section">
                 <div class="second-container">
                     <div class="white-box">
-                        <div class = "image-box">
-                            <img src="static/img/커햄1.jpg" alt="Image" class="project-image">
-                            <img src="static/img/커햄2.jpg" alt="Image" class="project-image">
-                            <img src="static/img/커햄3.jpg" alt="Image" class="project-image">
+                        <div class="image-box">
+                            <img th:src="@{${notice.imagePath != null ? notice.imagePath : 'Unknown'}}" alt="Image 1" class="project-image">
                         </div>
-                        <textarea class="textbox" placeholder="여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등"></textarea>
+                        <textarea class="textbox" th:text="${notice.content}" readonly></textarea>
                     </div>
                 </div>
             </div>
+            <!-- 수정 및 삭제 버튼 -->
+            <div class="button-container">
+                <a th:href="@{/notice/manager/edit/{id}(id=${notice.id})}" class="edit-button">수정</a>
+                <form th:action="@{/notice/manager/delete/{id}(id=${notice.id})}" method="post">
+                    <button type="submit" class="delete-button">삭제</button>
+                </form>
+            </div>
         </div>
-    </div>    
-    
+    </div>
+
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="footer-logo">
+        <img src="WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
-    <script src="static/js/back_button.js" defer></script>
-    <script src="static/js/switch.js"></script>
+    <script th:src="@{~/js/menu_style.js}"></script>
+    <script th:src="@{~/js/back_button.js}"></script>
+    <script th:src="@{~/js/switch.js}"></script>
 
 </body>
 </html>
