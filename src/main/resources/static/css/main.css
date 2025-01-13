@@ -40,6 +40,12 @@
         z-index: 999;/*Notice main쪽 z index 설정때문에 이거 맞춰둡니다*/
     }
 
+    #main-header #back-button {
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
     
     #main-header>a{
         margin-top: 40px;
@@ -193,7 +199,14 @@
         align-items: center;
         z-index: 999;
     }
-        
+
+    #main-header #back-button {
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
+
     #main-header>a {
         margin-top: 30px;
     }

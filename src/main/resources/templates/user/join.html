@@ -10,11 +10,10 @@
 </head>
 <body>
     <header id="main-header">
-        <a th:href="@{/home}">
-            <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-                <img src="img/whiteBack.svg" alt="back" id="back-button">
-            </a>
-        <a th:href="@{/home}">
+        <button id="back-button">
+            <img src="img/whiteBack.svg" alt="back">
+        </button>
+        <a th:href="@{/}">
             <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
@@ -46,18 +45,18 @@
     <div id="page-wrapper">
         <div id="main-section">
             <div id="join-section">
+                <div th:if="${errorMessage}" style="color: white; margin-bottom: 10px;">
+                    <p th:utext="${errorMessage}"></p>
+                </div>
                  <form method="post" action="" id="join-form"><br>
-                    <input type="text" name="userId" placeholder="ID" ><br>
-                    <input type="text" name="username" placeholder="Name"><br>
-                    <input type="text" name="studentId" placeholder="StudentId"><br>
-                    <input type="text" name="major" placeholder="Major"><br>
-                    <input type="password" name="password" placeholder="Password"><br>
-                    <input type="password" name="password2" placeholder="Password2"><br>
+                    <input type="text" name="userId" placeholder="ID" required><br>
+                    <input type="text" name="username" placeholder="Name" required><br>
+                    <input type="text" name="studentId" placeholder="StudentId" required><br>
+                    <input type="text" name="major" placeholder="Major" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <input type="password" name="password2" placeholder="Password2" required><br>
                     <input type="submit" value="join">
                 </form>
-            </div>
-            <div th:if="${errorMessage}" style="color: white;">
-                <p th:text="${errorMessage}"></p>
             </div>
         </div>
     </div>
@@ -67,5 +66,6 @@
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
     <script src="js/menu_style.js"></script>
+    <script src="js/back_button.js"></script>
 </body>
 </html>
