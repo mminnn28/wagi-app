@@ -86,7 +86,7 @@
         padding-right: 15px;
     }
 
-    #whiteRectangle {
+    .whiteRectangle {
         display: block;
         margin: 0 auto;
         width: 100px;
@@ -419,5 +419,12 @@
         padding: 10px;
         padding-left: 50px;
     }
-    
+
+    #write-button{
+        padding-top:30px;
+        padding-left: 255px;
+        border:none;
+        background:none;
+        color:white;
+    }
     }
