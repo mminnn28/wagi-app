@@ -24,16 +24,15 @@ public class Notice {
     @Column(name = "content", columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "created_by", referencedColumnName = "userId", nullable = false)
-    private User createdBy; // Users 테이블 참조
+    @Column(name = "created_by", nullable = false)
+    private String createdBy; // 작성자 아이디를 문자열로 저장
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private String imagePath; // 이미지 경로 저장 필드
 
-    public static Notice from(NoticeCreateDto dto, User createdBy, String imagePath) {
+    public static Notice from(NoticeCreateDto dto, String createdBy, String imagePath) {
         Notice notice = new Notice();
         notice.setTitle(dto.getTitle());
         notice.setContent(dto.getContent());

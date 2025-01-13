@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/notice02.css">
+    <link rel="stylesheet" th:href="@{~/css/notice02.css}">
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
@@ -12,10 +12,10 @@
     <header id="main-header">
         <a href="javascript:history.back()">
         <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="static/img/whiteBack.svg" alt="back" id="back-button">
+            <img src="img/whiteBack.svg" alt="back" id="back-button">
         </a>
         <a href="main.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo">
+            <img src="img/WAGI_logo_crop.png" alt="logo" id="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +27,7 @@
 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
         <div class="slide" id="slide">
             <ul id="slide_menu">
@@ -42,7 +42,7 @@
             </ul>
         </div>
     </header>
-    
+
     <div id="page-wrapper">
         <div id="main-section">
             <div class="content-section">
@@ -60,104 +60,27 @@
                     </div>
                 </div>
 
-            <div class="content-section list-container">
-                <div class="third-container">
-                    <div class="text1">2024/09/25</div>
-                    <a href="./notice03.html">
-                        <div class="text2">1차 와기 정기 스터디</div>
-                    </a>
+                <div class="content-section list-container">
+                    <div class="third-container" th:each="notice : ${notices}">
+                        <div class="text1" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></div>
+                        <a th:href="@{./notice03.html(id=${notice.id})}">
+                            <div class="text2" th:text="${notice.title}"></div>
+                        </a>
+                        <img src="img/line.png" alt="line" id="line"/>
+                    </div>
                 </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/02</div>
-                    <a href="./notice03.html">
-                        <div class="text2">2차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/09</div>
-                    <a href="./notice03.html">
-                        <div class="text2">3차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/09/25</div>
-                    <a href="./notice03.html">
-                        <div class="text2">4차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/02</div>
-                    <a href="./notice03.html">
-                        <div class="text2">5차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/09</div>
-                    <a href="./notice03.html">
-                        <div class="text2">6차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/09/25</div>
-                    <a href="./notice03.html">
-                        <div class="text2">7차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/02</div>
-                    <a href="./notice03.html">
-                        <div class="text2">8차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/09</div>
-                    <a href="./notice03.html">
-                        <div class="text2">9차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/09/25</div>
-                    <a href="./notice03.html">
-                        <div class="text2">10차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/02</div>
-                    <a href="./notice03.html">
-                        <div class="text2">11차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
-                <div class="third-container">
-                    <div class="text1">2024/10/09</div>
-                    <a href="./notice03.html">
-                        <div class="text2">12차 와기 정기 스터디</div>
-                    </a>
-                </div>
-                <img src="./static/img/line.png" alt="line" id="line">
             </div>
         </div>
-        </div>
-    </div>    
-    
+    </div>
+
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="footer-logo">
+        <img src="img/WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
-    <script src="static/js/back_button.js" defer></script>
-    <script src="static/js/switch.js"></script>
+    <script th:src="@{~/js/menu_style.js}"></script>
+    <script th:src="@{~/js/back_button.js}"></script>
+    <script th:src="@{~/js/switch.js}"></script>
 
 </body>
 </html>

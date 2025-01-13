@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/outcome02.css">
+    <link rel="stylesheet" th:href="@{~/css/outcome02.css}">
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
@@ -72,9 +72,9 @@
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
-    <script src="static/js/back_button.js" defer></script>
-    <script src="static/js/switch.js"></script>
+    <script th:src="@{~/js/menu_style.js}"></script>
+    <script th:src="@{~/js/back_button.js}"></script>
+    <script th:src="@{~/js/switch.js}"></script>
 
 </body>
 </html>
