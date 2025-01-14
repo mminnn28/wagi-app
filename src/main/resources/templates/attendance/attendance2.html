@@ -49,26 +49,22 @@
    
     
 <div id="page-wrapper">
-    <form th:object="${attendanceCreateDTO}" id="attendance-form">
         <div id="main-section">
-           
                 <div id="attendance-box">
-
                     <div id="babywagi-icon">
                         <img src="/img/baby_wagi.png" alt="Battery Icon">
                     </div>
                     <p id="gg">인증번호를 입력해주세요</p>
                     <div id="user-info">
+                        <form th:action="@{/attendance/request}" method="post" th:object="${attendanceCreateDTO}" id="attendance-form">
                         <div id="attendance-inbox">
                             <input type="text" th:field="*{inputCode}" class="inputContainer" placeholder="Enter Code"/>
                         </div>
+                            <button type="submit" id="attendance-button">attendance</button>
+                        </form>
                     </div>
-
                 </div>
         </div>
-        <button type="submit" id="attendance-button"><a th:href="@{/attendance/request}" method="post">attendance</a></button>
-    </form>
-
 </div>
 
 
