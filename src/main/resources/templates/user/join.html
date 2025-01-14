@@ -16,7 +16,7 @@
     <nav id="main-navigation">
         <ul class="menu">
             <li class="menu-item"><a th:href="@{/notice}">Notice</a></li>
-            <li class="menu-item"><a href="">Attendance</a></li>
+            <li class="menu-item"><a th:href="@{/attendance}">Attendance</a></li>
             <li class="menu-item"><a th:href="@{/outcome}">Outcome</a></li>
         </ul>
     </nav>
@@ -32,8 +32,8 @@
             <div sec:authorize="isAuthenticated()">
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <li class="menu-item"><a th:href="@{/admin/attendance}">Manager-출석</a></li>
-                    <li class="menu-item"><a th:href="@{admin/register}">Manager-합격자</a></li>
-                    <li class="menu-item"><a th:href="@{admin/auth}">Manager-권한</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/register}">Manager-합격자</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/auth}">Manager-권한</a></li>
                 </div>
             </div>
         </ul>
