@@ -10,4 +10,9 @@ public class MainController {
     public String home() {
         return "main";
     }
+
+    @GetMapping("/makers")
+    public String makers() {
+        return "makers";
+    }
 }

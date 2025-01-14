@@ -48,6 +48,9 @@
 
     #main-header #back-button {
         height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
     
     #main-navigation {
@@ -421,10 +424,13 @@
         font-size: 12px;
         margin-right: 280px;
     }
-    
+
     #main-header #back-button {
-        height: 20px;
-    }
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
     
     #page-wrapper {
         display: flex;

@@ -240,6 +240,9 @@
 
     #main-header #back-button {
         height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
         
     #main-header>a {
