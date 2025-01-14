@@ -299,22 +299,27 @@
     }
 
     .white-box {
-        height: 400px;
-        width: 360px;
+        height: 380px;
+        width: 340px;
         /* width: 120%; */
         border-radius: 10%;
         background-color: #ffffff;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         margin-top: 10px;
+        overflow-x: hidden;
+        padding: 10px;
     }
 
     .project-image {
-        margin-top: 20px;
-        width: 300px;
-        height: auto;
+        max-width: 300px;
+        max-height: 150px;
+        object-fit: contain;
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
     }
 
     .textbox {
@@ -324,6 +329,7 @@
         border: none;
         overflow-y: auto;
         margin-top: 20px;
+        resize: none;
     }
 
     #title {
@@ -421,6 +427,7 @@
 
     #rewrite-button,
     #delete-button {
+        margin-top: 10px;
         border-radius: 21px;
         border: none;
         background: #C0CCFF;
