@@ -222,36 +222,34 @@
     }
 
     #main-header>a {
-        margin: 13px;
+        margin-top: 30px;
+        margin-left:-30px;
+    }
+    #main-header > a> img {
+        margin-right:-17px;
+        width: 100px;
+        margin-left: 122px;
+        max-height: 40px;
+        margin-bottom: 10px;
     }
 
-    #main-header #back-button {
-        height: 25px;
-        background-color: transparent;
-        border: none;
-        padding: 28px;
-    }
-    
-    #main-header #logo {
-        width: 100px;
-        margin-left: 30px;
-        max-height: 40px;
-    }
-    
-    #main-header #category_button {
-        height: 30px;
-    }
-    
     nav {
         display: none;
     }
-    
-    #category_button {
-        width: 40px;
-        height: 35px;
-        top: 16px;
-        left: 15px; 
 
+    #category_button {
+        width: 40px;/**/
+        height: 35px;/**/
+        top: 16px;
+        left: 15px;
+
+    }
+
+    #main-header #back-button {
+                height: 25px;
+                background-color: transparent;
+                border: none;
+                padding: 28px;
     }
     
     #main-navigation {
