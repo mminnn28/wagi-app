@@ -226,7 +226,10 @@
     }
 
     #main-header #back-button {
-        height: 20px;
+        height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
     
     #main-header #logo {
@@ -374,7 +377,7 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     #main-footer p {
         margin-bottom: 0;
         background-color: C0CCFF;
@@ -384,6 +387,18 @@
     #main-footer img {
         width: 110px;
         background-color: C0CCFF;
+    }
+
+    /* 제목을 위한 스타일 추가 */
+    .text2 {
+        white-space: nowrap; /* 필요한 경우 제목도 한 줄 유지 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 길어지면 ...으로 표시 */
+    }
+
+    /* 흰색 바 제거 */
+    #line, .line {
+        display: none; /* 라인 이미지 숨김 */
     }
 
     .link {
