@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wagi_app.wagi.DTO.AttendanceCreateDTO;
+import wagi_app.wagi.DTO.UserDto;
 import wagi_app.wagi.entity.Attendance;
 import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.UserRepository;
 import wagi_app.wagi.service.AttendanceService;
+import wagi_app.wagi.service.UserService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,19 +29,14 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AttendanceController {
     private final AttendanceService attendanceService;
+    private final UserService userService;
 
     //출석 시작 화면
     @GetMapping("/attendance")
     public String requestAttendance(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof User) {
-            User user = (User) authentication.getPrincipal();
-            String studentId = user.getStudentId();
-            String username = user.getUsername();
-            model.addAttribute("studentId", studentId);
-            model.addAttribute("username", username);
-        };
+        UserDto userDto = userService.getUserInfo();
+        model.addAttribute("username", userDto.getUsername());
+        model.addAttribute("studentId", userDto.getStudentId());
 
         LocalDateTime now = LocalDateTime.now();
         String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
