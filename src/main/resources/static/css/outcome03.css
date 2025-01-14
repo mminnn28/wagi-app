@@ -150,6 +150,42 @@
     object-fit: cover;
   }
 
+  #imagePreview {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  #imagePreview img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .white-box .project-image {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+
+  .project-image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
   #login-button {
     padding: 10px 20px;
     border: none;
@@ -224,7 +260,10 @@
   }
 
   #main-header #back-button {
-    height: 20px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    padding: 28px;
   }
 
   #main-header #logo {
@@ -279,6 +318,11 @@
     gap: 10px;
     margin-left: 15px;
   }
+
+  /*.category-btn.active {*/
+  /*  background-color: #4CAF50; !* 활성 상태 색상 예시 *!*/
+  /*  color: white;*/
+  /*}*/
 
   /* .text1{
         inline-size: 50px;
@@ -359,11 +403,11 @@
   }
 
   .project-image {
-    width: 150px;
-    height: 150px;
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
   .textbox {
@@ -457,17 +501,33 @@
     display: none;
   }
 
+  #imagePreview {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  #imagePreview img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
   .slide {
     width: 100%;
     position: fixed;
     left: -100%;
-    top: 79px;
+    top: 59px;
     right: 0;
     bottom: 0;
     transition: top 0.5s;
     background-color: black;
-
-    max-height: 40%;
+    max-height: 55%;
   }
 
   .slide.on {

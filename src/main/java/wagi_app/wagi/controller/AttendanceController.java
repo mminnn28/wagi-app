@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import wagi_app.wagi.service.AttendanceService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -40,7 +43,9 @@ public class AttendanceController {
 
         LocalDateTime now = LocalDateTime.now();
         String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
         model.addAttribute("todayDate", formattedDate);
+        model.addAttribute("todayTime", formattedTime);
         return "attendance/attendence1";
     }
 
@@ -55,27 +60,59 @@ public class AttendanceController {
     @PostMapping("/attendance/request")
     public String submitAttendanceCode(@ModelAttribute AttendanceCreateDTO attendanceCreateDTO, Model model) {
 
-        if (attendanceCreateDTO.getAttendance() == "1") {
-            return "redirect:/attendance/request/success";
+        String attendance = attendanceService.createAttendance(attendanceCreateDTO);
+        model.addAttribute("inputCode", attendanceCreateDTO.getInputCode());
+
+
+        if ("1".equals(attendance)) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication.getPrincipal() instanceof User) {
+                User user = (User) authentication.getPrincipal();
+                model.addAttribute("studentId", user.getStudentId());
+                model.addAttribute("username", user.getUsername());
+            }
+            return "attendance/attendance4"; // 성공 페이지
         } else {
-            return "attendance/attendance2";
+            return "attendance/attendance2"; // 실패 시 다시 입력 페이지로 이동
         }
+
     }
 
     //출석 성공 화면
     @GetMapping("/attendance/request/success")
-    public String attendanceSuccess() {
+    public String attendanceSuccess(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof User) {
+            User user = (User) authentication.getPrincipal();
+            String studentId = user.getStudentId();
+            String username = user.getUsername();
+            model.addAttribute("studentId", studentId);
+            model.addAttribute("username", username);
+        };
+
         return "attendance/attendance4";
     }
 
     //출석 결과 화면
     @GetMapping("/attendance/result")
-    public String attendanceResult(User user, Model model) {
-        model.addAttribute("user", user);
+    public String attendanceResult(Attendance attendance, Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof User) {
+            User user = (User) authentication.getPrincipal();
+            String studentId = user.getStudentId();
+            String username = user.getUsername();
+            model.addAttribute("studentId", studentId);
+            model.addAttribute("username", username);
+        };
 
         LocalDate today = LocalDate.now();
         String formattedDate = today.format(DateTimeFormatter.ofPattern("M/d"));
         model.addAttribute("todayDate", formattedDate);
+
+        List<Attendance> attendances = attendanceService.findAll();
+        model.addAttribute("attendances", attendances);
 
         return "attendance/attendance3";
     }
@@ -90,17 +127,9 @@ public class AttendanceController {
     @PostMapping("/admin/attendance")
     public String showAttendanceCode(Model model) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof User) {
-            User user = (User) authentication.getPrincipal();
-            String role = user.getRole();
-            model.addAttribute("role", role);
+        String attendanceCode = attendanceService.createAttendanceCode(); // 인증번호 생성
+        model.addAttribute("attendanceCode", attendanceCode); // 모델에 데이터 추가
 
-            if ("ADMIN".equals(role)) {
-                String attendanceCode = attendanceService.createAttendanceCode(); // 인증번호 생성
-                model.addAttribute("attendanceCode", attendanceCode); // 모델에 데이터 추가
-            }
-        };
         return "attendance/maneger2";
     }
 

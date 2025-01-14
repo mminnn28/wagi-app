@@ -1,49 +1,43 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" th:href="@{css/attendence1.css}">
-    <link rel="stylesheet" th:href="@{css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/attendence1.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/attendance}">
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <header id="main-header">
-    <button id="back-button">
-        <img src="img/whiteBack.svg" alt="back">
-    </button>
     <a th:href="@{/}">
-        <img src="img/WAGI_logo_crop.png" alt="logo">
-    </a>
-
-    <a th:href="@{/home}">
-        <img src="img/WAGI_logo_crop.png" alt="logo">
+        <img src="/img/WAGI_logo_crop.png" alt="logo">
     </a>
     <nav id="main-navigation">
         <ul class="menu">
-            <li class="menu-item"><a href="">Notice</a></li>
+            <li class="menu-item"><a th:href="@{/notice}">Notice</a></li>
             <li class="menu-item"><a th:href="@{/attendance}">Attendance</a></li>
-            <li class="menu-item"><a href="">Outcome</a></li>
+            <li class="menu-item"><a th:href="@{/outcome}">Outcome</a></li>
         </ul>
     </nav>
     <!-- 모바일 전용 -->
     <a>
-        <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
+        <img src="/img/ci_hamburger-lg.svg" id="category_button" value="">
     </a>
-
     <div class="slide" id="slide">
         <ul id="slide_menu">
-            <li class="menu-item"><a href="./notice.html">Notice</a></li>
-            <li class="menu-item"><a th:href="@{/attendance/request}">Attendance</a></li>
-            <li class="menu-item"><a href="./outcome.html">Outcome</a></li>
-            <li class="menu-item"><a th:href="@{/admin/attendance}">Manager-출석</a></li>
-            <li class="menu-item"><a href="./outcome03.html">Manager-Outcome</a></li>
-            <li class="menu-item"><a href="./notice04_01.html">Manager-Notice</a></li>
-            <li class="menu-item"><a href="./manager03.html">Manager-합격자</a></li>
-            <li class="menu-item"><a href="./manager04.html">Manager-권한</a></li>
+            <li class="menu-item"><a th:href="@{/notice}">Notice</a></li>
+            <li class="menu-item"><a th:href="@{/attendance}">Attendance</a></li>
+            <li class="menu-item"><a th:href="@{/outcome}">Outcome</a></li>
+            <div sec:authorize="isAuthenticated()">
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li class="menu-item"><a th:href="@{/admin/attendance}">Manager-출석</a></li>
+                    <li class="menu-item"><a th:href="@{admin/register}">Manager-합격자</a></li>
+                    <li class="menu-item"><a th:href="@{admin/auth}">Manager-권한</a></li>
+                </div>
+            </div>
         </ul>
     </div>
     <!-- 모바일 전용 -->
@@ -57,16 +51,16 @@
 
         <div id="attendance-box">
             <div id="babywagi-icon">
-                <img src="img/baby_wagi.png" alt="Battery Icon">
+                <img src="/img/baby_wagi.png" alt="Battery Icon">
 
             </div>
-            <p id="ooo" style="color:white;"><span th:if="${user != null}" th:text="${studentId} + ' ' + ${username} + '님'"></span></p>
+            <p id="ooo"><div style="color:white;" name="studentId" th:text="${studentId}"></div> <div style="color:white;" name="username" th:text="${username}"></div>님</p>
             <div id="user-info">
 
                 <div id="attendance-inbox">
-                    <span th:text="${todayDate}"></span><br>
-                    6:30<br>
-                    WAGI에 출석체크 하시겠습니까?
+                    <p><div class="todayDate" th:text="${todayDate}"></div></p>
+                    <p><div class="todayTime" th:text="${todayTime}"></div></p>
+                    <p>WAGI에 출석체크 하시겠습니까?</p>
                 </div>
 
             </div>
@@ -74,16 +68,24 @@
         </div>
 
     </div>
-    <button id="attendance-button"><a th:href="@{/attendance/request}">attendance</a></button>
+    <form th:action="@{/attendance/request}" method="get">
+        <button id="attendance-button">attendance</button>
+    </form>
 </div>
 
 
 <footer id="main-footer">
-    <img src="img/WAGI_black.png" alt="logo">
+    <img src="/img/WAGI_black.png" alt="logo">
+
     <p>ⓒWAGI. 2024 All rights reserved</p>
 
-    <button id="login-button"><a th:href="@{/login}">LOGIN</a></button>
+    <button class="login-button" sec:authorize="isAnonymous()">
+        <a th:href="@{/login}">LOGIN</a>
+    </button>
+    <button class="login-button" sec:authorize="isAuthenticated()">
+        <a th:href="@{/logout}">LOGOUT</a>
+    </button>
 </footer>
-<script src="js/menu_style.js"></script>
+<script src="/js/menu_style.js"></script>
 </body>
 </html>

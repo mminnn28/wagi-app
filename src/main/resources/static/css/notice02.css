@@ -226,7 +226,10 @@
     }
 
     #main-header #back-button {
-        height: 20px;
+        height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
     
     #main-header #logo {
@@ -326,7 +329,7 @@
             margin-top: 5px;
     }
 
-    #line{
+    .line{
         width: 290px;
         height: auto;
         margin-left: 50px;
@@ -416,14 +419,12 @@
         width: 100%;
         position: fixed;
         left: -100%;
-        top: 79px;
+        top: 59px;
         right: 0;
         bottom: 0;
         transition: top 0.5s;
         background-color: black;
-
-        max-height: 40%;
-
+        max-height: 55%;
     }
         
     .slide.on {
@@ -436,6 +437,14 @@
         width: 100%;
         padding: 10px;
         padding-left: 50px;
+    }
+
+    #write-button{
+        padding-top:30px;
+        padding-left: 255px;
+        border:none;
+        background:none;
+        color:white;
     }
     
     }
