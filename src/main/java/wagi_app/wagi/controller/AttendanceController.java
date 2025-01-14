@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wagi_app.wagi.DTO.AttendanceCreateDTO;
 import wagi_app.wagi.DTO.UserDto;
+import wagi_app.wagi.Manager.AttendanceCodeManager;
 import wagi_app.wagi.entity.Attendance;
 import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.UserRepository;
@@ -30,6 +31,7 @@ import java.util.Objects;
 public class AttendanceController {
     private final AttendanceService attendanceService;
     private final UserService userService;
+    private final AttendanceCodeManager attendanceCodeManager;
 
     //출석 시작 화면
     @GetMapping("/attendance")
@@ -57,21 +59,24 @@ public class AttendanceController {
     @PostMapping("/attendance/request")
     public String submitAttendanceCode(@ModelAttribute AttendanceCreateDTO attendanceCreateDTO, Model model) {
 
-        String attendance = attendanceService.createAttendance(attendanceCreateDTO);
-        model.addAttribute("inputCode", attendanceCreateDTO.getInputCode());
+        String correctCode = attendanceCodeManager.getAttendanceCode();
+        if (correctCode == null) {
+            UserDto userDto = userService.getUserInfo();
+            model.addAttribute("username", userDto.getUsername());
+            model.addAttribute("studentId", userDto.getStudentId());
 
-
-        if ("1".equals(attendance)) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication.getPrincipal() instanceof User) {
-                User user = (User) authentication.getPrincipal();
-                model.addAttribute("studentId", user.getStudentId());
-                model.addAttribute("username", user.getUsername());
-            }
-            return "attendance/attendance4"; // 성공 페이지
-        } else {
-            return "attendance/attendance2"; // 실패 시 다시 입력 페이지로 이동
+            LocalDateTime now = LocalDateTime.now();
+            String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
+            model.addAttribute("todayDate", formattedDate);
+            model.addAttribute("todayTime", formattedTime);
+            return "attendance/attendence1"; // 관리자가 생성한 인증코드 만료 시 출석 시작 화면으로 이동시킴
         }
+        if (correctCode.equals(attendanceCreateDTO.getInputCode())) {
+            attendanceService.createAttendance(attendanceCreateDTO);
+            return "attendance/attendance4"; // 출석 성공
+        }
+        return "attendance/attendance2"; // 다시 입력 페이지로 이동
 
     }
 
