@@ -392,6 +392,18 @@
         padding: 16px 24px;
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+
+    .login-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
+
+    .logout-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
 }
 
 @media (min-width: 451px) {

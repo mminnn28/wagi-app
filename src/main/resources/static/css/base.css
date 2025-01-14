@@ -285,8 +285,16 @@
         object-fit: cover;
     }
     
-    #login-button {
-        display: none;
+    .login-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
+
+    .logout-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
     }
     
     .slide {

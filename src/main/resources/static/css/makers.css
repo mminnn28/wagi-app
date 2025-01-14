@@ -152,6 +152,18 @@
         background-color: black;
         max-height: 55%;
     }
+
+    .login-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
+
+    .logout-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
         
 }
 @media(min-width: 450px){
