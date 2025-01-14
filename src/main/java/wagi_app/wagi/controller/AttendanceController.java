@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wagi_app.wagi.DTO.AttendanceCreateDTO;
+import wagi_app.wagi.entity.Attendance;
 import wagi_app.wagi.entity.User;
+import wagi_app.wagi.repository.UserRepository;
 import wagi_app.wagi.service.AttendanceService;
 
 import java.time.LocalDate;
@@ -101,4 +103,5 @@ public class AttendanceController {
         };
         return "attendance/maneger2";
     }
+
 }
