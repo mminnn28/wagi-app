@@ -130,7 +130,7 @@
         object-fit: cover;
     }
     
-    #login-button {
+    .login-button {
         padding: 10px 20px;
         border: none;
         cursor: pointer;
