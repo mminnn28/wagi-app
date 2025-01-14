@@ -36,6 +36,27 @@ public class AttendanceController {
     //출석 시작 화면
     @GetMapping("/attendance")
     public String requestAttendance(Model model) {
+        String correctCode = attendanceCodeManager.getAttendanceCode();
+        if (correctCode == null) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication.getPrincipal() instanceof User) {
+                User user = (User) authentication.getPrincipal();
+                String studentId = user.getStudentId();
+                String username = user.getUsername();
+                model.addAttribute("studentId", studentId);
+                model.addAttribute("username", username);
+            };
+
+            LocalDate today = LocalDate.now();
+            String formattedDate = today.format(DateTimeFormatter.ofPattern("M/d"));
+            model.addAttribute("todayDate", formattedDate);
+
+            List<Attendance> attendances = attendanceService.findAll();
+            model.addAttribute("attendances", attendances);
+
+            return "attendance/attendance3";// 관리자가 생성한 인증코드 만료 시 출석 현황? 확인하는 화면으로 이동
+        }
+        // 관리자가 생성한 출석 인증 코드가 유효한 경우 출석 시작 화면으로 이동
         UserDto userDto = userService.getUserInfo();
         model.addAttribute("username", userDto.getUsername());
         model.addAttribute("studentId", userDto.getStudentId());
@@ -61,20 +82,32 @@ public class AttendanceController {
 
         String correctCode = attendanceCodeManager.getAttendanceCode();
         if (correctCode == null) {
-            UserDto userDto = userService.getUserInfo();
-            model.addAttribute("username", userDto.getUsername());
-            model.addAttribute("studentId", userDto.getStudentId());
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication.getPrincipal() instanceof User) {
+                User user = (User) authentication.getPrincipal();
+                String studentId = user.getStudentId();
+                String username = user.getUsername();
+                model.addAttribute("studentId", studentId);
+                model.addAttribute("username", username);
+            };
 
-            LocalDateTime now = LocalDateTime.now();
-            String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-            String formattedTime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
+            LocalDate today = LocalDate.now();
+            String formattedDate = today.format(DateTimeFormatter.ofPattern("M/d"));
             model.addAttribute("todayDate", formattedDate);
-            model.addAttribute("todayTime", formattedTime);
-            return "attendance/attendence1"; // 관리자가 생성한 인증코드 만료 시 출석 시작 화면으로 이동시킴
+
+            List<Attendance> attendances = attendanceService.findAll();
+            model.addAttribute("attendances", attendances);
+
+            return "attendance/attendance3";// 관리자가 생성한 인증코드 만료 시 출석 현황? 확인하는 화면으로 이동
         }
         if (correctCode.equals(attendanceCreateDTO.getInputCode())) {
-            attendanceService.createAttendance(attendanceCreateDTO);
-            return "attendance/attendance4"; // 출석 성공
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication.getPrincipal() instanceof User) {
+                User user = (User) authentication.getPrincipal();
+                attendanceCreateDTO.setUserId(user.getUsername());
+                attendanceService.createAttendance(attendanceCreateDTO);
+                return "attendance/attendance4"; // 출석 성공
+            }
         }
         return "attendance/attendance2"; // 다시 입력 페이지로 이동
 
@@ -91,7 +124,7 @@ public class AttendanceController {
             String username = user.getUsername();
             model.addAttribute("studentId", studentId);
             model.addAttribute("username", username);
-        };
+        }
 
         return "attendance/attendance4";
     }
