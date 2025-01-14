@@ -2,7 +2,7 @@ package wagi_app.wagi.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +11,7 @@ import wagi_app.wagi.DTO.OutcomeUpdateDto;
 import wagi_app.wagi.entity.Outcome;
 import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.OutcomeRepository;
+import wagi_app.wagi.repository.UserRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,59 +22,89 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class OutcomeService {
     @Value("${file.upload-dir}")
     private String uploadDir;
     private final OutcomeRepository outcomeRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    public OutcomeService(OutcomeRepository outcomeRepository) {
-        this.outcomeRepository = outcomeRepository;
+    // 아웃컴 생성 (이미지 저장)
+    public Outcome createOutcome(OutcomeCreateDto dto, String userId) {
+        try {
+            User user = userRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("해당 사용자를 찾을 수 없습니다."));
+
+            String imagePath = saveImage(dto.getImageFile());
+
+            String category = dto.getCategory(); // Category 타입을 명시적으로 지정
+            Outcome outcome = Outcome.from(dto, userId, imagePath, category);
+            return outcomeRepository.save(outcome);
+        } catch (IOException e) {
+            throw new RuntimeException("이미지 저장 중 오류가 발생했습니다.", e);
+        }
     }
-    // 공지사항 생성 (이미지 저장)
-    public Outcome createOutcome(OutcomeCreateDto dto, User createdBy) throws IOException {
-        String imagePath = saveImage(dto.getImageFile());
-        Outcome outcome = Outcome.from(dto, createdBy, imagePath);
-        return outcomeRepository.save(outcome);
+
+
+    public List<Outcome> getOutcomesByCategory(String category) {
+        return outcomeRepository.findByCategory(category);
     }
-    // 모든 공지사항 조회
+
+    // 모든 아웃컴 조회
     public List<Outcome> getAllOutcomes() {
         return outcomeRepository.findAll();
     }
 
-    // ID로 공지사항 조회
+    // ID로 아웃컴 조회
     public Outcome getOutcomeById(Long id) {
         return outcomeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("공지사항을 찾을 수 없습니다."));
     }
 
-    // 공지사항 수정 (이미지 수정)
-    public Outcome updateOutcome(Long id, OutcomeUpdateDto dto, User updatedBy) throws IOException {
-        Outcome outcome = outcomeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
+    // 아웃컴 수정 (이미지 수정)
+    public Outcome updateOutcome(Long id, OutcomeUpdateDto dto, String userId) throws IOException {
+        Outcome outcome = getOutcomeById(id);
 
-        if (!outcome.getCreatedBy().equals(updatedBy)) {
-            throw new SecurityException("수정 권한이 없습니다.");
-        }
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("해당 사용자를 찾을 수 없습니다."));
 
-        // 기존 이미지 삭제 후 새 이미지 저장
+        // ADMIN 또는 MANAGER 역할을 가진 사용자는 모든 공지사항을 수정할 수 있도록 수정
+        boolean isAdmin = user.getRole().equals("ADMIN");
+        boolean isManager = user.getRole().equals("MANAGER");
+
+        // 기존 데이터 업데이트
+        outcome.setTitle(dto.getTitle());
+        outcome.setContent(dto.getContent());
+        outcome.setCategory(dto.getCategory());  // 카테고리 업데이트 추가
+
+        // 이미지 파일이 있는 경우 처리
         if (dto.getImageFile() != null && !dto.getImageFile().isEmpty()) {
-            deleteImage(outcome.getImagePath());
+            // 기존 이미지 삭제 로직
+            if (outcome.getImagePath() != null) {
+                // 실제 파일 삭제 로직
+            }
+
+            // 새 이미지 저장
             String imagePath = saveImage(dto.getImageFile());
             outcome.setImagePath(imagePath);
         }
 
-        outcome.setTitle(dto.getTitle());
-        outcome.setContent(dto.getContent());
         return outcomeRepository.save(outcome);
     }
 
-    // 공지사항 삭제 (이미지 삭제)
-    public void deleteOutcome(Long id, User deletedBy) {
+    // 아웃컴 삭제 (이미지 삭제)
+    public void deleteOutcome(Long id, String userId) {
         Outcome outcome = outcomeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("공지사항을 찾을 수 없습니다."));
 
-        if (!outcome.getCreatedBy().equals(deletedBy)) {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("해당 사용자를 찾을 수 없습니다."));
+
+        // ADMIN 또는 MANAGER 역할을 가진 사용자는 모든 공지사항을 삭제할 수 있도록 수정
+        boolean isAdmin = user.getRole().equals("ADMIN");
+        boolean isManager = user.getRole().equals("MANAGER");
+
+        if (!isAdmin && !isManager) {
             throw new SecurityException("삭제 권한이 없습니다.");
         }
 

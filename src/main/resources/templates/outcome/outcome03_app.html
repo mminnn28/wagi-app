@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" href="static/css/outcome03_01.css">
+    <link rel="stylesheet" th:href="@{~/css/outcome03_01.css}">
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header id="main-header">
-        <a href="javascript:history.back()">
-        <!-- <a href="/Wagi2_WebApp/FRONT/static/js/back_button.js"> -->
-            <img src="static/img/whiteBack.svg" alt="back" id="back-button">
-        </a>
-        <a href="main.html">
-            <img src="static/img/WAGI_logo_crop.png" alt="logo" id="logo">
+        <button id="back-button">
+            <img src="img/whiteBack.svg" alt="back">
+        </button>
+        <a th:href="@{/}">
+            <img src="img/WAGI_logo_crop.png" alt="logo">
         </a>
         <nav id="main-navigation">
             <ul class="menu">
@@ -27,7 +26,7 @@
 
         <!-- 모바일 전용 -->
         <a>
-            <img src="static/img/ci_hamburger-lg.svg" id="category_button" value="">
+            <img src="img/ci_hamburger-lg.svg" id="category_button" value="">
         </a>
         <div class="slide" id="slide">
             <ul id="slide_menu">
@@ -42,53 +41,69 @@
             </ul>
         </div>
     </header>
-    
+
     <div id="page-wrapper">
         <div id="main-section">
-            <div class="content-section">
-                <div class="first-container">
-                    <div class="text0">Crystal-Link</div>
-                    <!-- <div class="text2">와기 정기 스터디</div> -->
+            <form id="outcomeForm" th:action="@{${outcome != null ? '/outcome/manager/edit/' + outcome.id : '/outcome/manager/create'}}" method="post" enctype="multipart/form-data">
+                <div class="content-section">
+                    <div class="first-container">
+                        <input type="text" name="title" class="text0"
+                               th:value="${outcome != null ? outcome.title : ''}"
+                               placeholder="제목을 입력해주세요" required>
+                    </div>
                 </div>
-            </div>
-            <div class="content-section">
-                <div class="second-container">
-                    <div class="white-box">
-                        <div class="second-first-container">
-                            <a href="./outcome03_web.html">
-                                <button class="text2">Web</button>
-                            </a>
-                            <a href="./outcome03_app.html">
-                                <button class="text1">App</button>
-                            </a>
-                            <a href="./outcome03_game.html">
-                                <button class="text2">Game</button>
-                            </a>
-                        </div>
-                        <div class="black-line">
-                            <textarea class="textbox" placeholder="여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자 깃허브 링크 작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등여긴 걍 자유로 글 쓰게 하자깃허브 링크작품 설명~~~ 등"></textarea>
-                        </div>
-                        <div class="under">
-                            <div class="photo-link">
-                                <img src="static/img/photo.png" id="photo">
-                                <div class="text3">Crystal-Link.png</div>
+                <div class="content-section">
+                    <div class="second-container">
+                        <div class="white-box">
+                            <div class="second-first-container">
+                                <button type="button" class="category-btn text2" data-category="Web"
+                                        th:class="${category == 'Web' ? 'category-btn text1 selected' : 'category-btn text2'}">Web</button>
+                                <button type="button" class="category-btn text2" data-category="App"
+                                        th:class="${category == 'App' ? 'category-btn text1 selected' : 'category-btn text2'}">App</button>
+                                <button type="button" class="category-btn text2" data-category="Game"
+                                        th:class="${category == 'Game' ? 'category-btn text1 selected' : 'category-btn text2'}">Game</button>
+                                <input type="hidden" name="category" id="selectedCategory" th:value="${category}">
                             </div>
-                            <button class="complete">Complete</button>
+                            <div class="black-line">
+                            <textarea name="content" class="textbox" required
+                                      th:text="${outcome != null ? outcome.content : ''}"
+                                      placeholder="내용을 입력해주세요"></textarea>
+                            </div>
+                            <div class="under">
+                                <div class="photo-link">
+                                    <!-- 기존 이미지 미리보기 div 추가 -->
+                                    <div id="imagePreview">
+                                        <img th:if="${outcome != null && outcome.imagePath != null}"
+                                             th:src="@{${outcome.imagePath}}"
+                                             style="max-width: 200px"
+                                             alt="Current Image">
+                                    </div>
+                                    <!-- 이미지 파일 input -->
+                                    <input type="file" name="imageFile" id="imageFile" accept="image/*">
+                                    <label for="imageFile">
+                                        <img src="/img/photo.png" id="photo">
+                                        <!--                                        <div class="text3">이미지 선택</div>-->
+                                    </label>
+                                </div>
+                                <button type="submit" class="complete">Complete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>    
+    </div>
     
     <footer id="main-footer">
-        <img src="static/img/WAGI_black.png" alt="footer-logo">
+        <img src="img/WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
         <button id="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
-    <script src="static/js/menu_style.js"></script>
-    <script src="static/js/back_button.js" defer></script>
-    <script src="static/js/switch.js"></script>
+    <script th:src="@{~/js/menu_style.js}"></script>
+    <script th:src="@{~/js/back_button.js}" defer></script>
+    <script th:src="@{~/js/switch.js}"></script>
+    <script th:src="@{~/js/img.js}"></script>
+    <script th:src="@{~/js/changeCategory.js}"></script>
 
 </body>
 </html>

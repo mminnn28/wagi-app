@@ -26,6 +26,7 @@ public class UserService implements UserDetailsService {
     private final AdmittedUsersRepository admittedUsersRepository;
     private final PasswordEncoder passwordEncoder;
 
+
     // 회원 가입
     @Transactional
     public void saveUser(UserCreateDto userCreateDto) throws Exception {

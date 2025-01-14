@@ -226,9 +226,12 @@
     }
 
     #main-header #back-button {
-        height: 20px;
+        height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
-    
+
     #main-header #logo {
         width: 100px;
         margin-left: 30px;
@@ -406,14 +409,12 @@
         width: 100%;
         position: fixed;
         left: -100%;
-        top: 79px;
+        top: 59px;
         right: 0;
         bottom: 0;
         transition: top 0.5s;
         background-color: black;
-
-        max-height: 40%;
-
+        max-height: 55%;
     }
         
     .slide.on {

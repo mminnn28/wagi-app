@@ -6,6 +6,7 @@ import wagi_app.wagi.DTO.AttendanceCreateDTO;
 import wagi_app.wagi.entity.Attendance;
 import wagi_app.wagi.repository.AttendanceRepository;
 import java.security.SecureRandom;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,13 +28,17 @@ public class AttendanceService {
         String inputCode = attendanceCreateDTO.getInputCode();
         Attendance attendance = new Attendance();
         attendance.setUserId(attendanceCreateDTO.getUserId());
-        if (inputCode == String.valueOf(attendanceCode)) {
+        if (inputCode.equals(String.valueOf(attendanceCode))) {
             attendance.setAttendance("1"); //출석이면 1, 지각 또는 조퇴이면 2
         } else {
-            attendance.setAttendance(null); //결석이면 0
+            attendance.setAttendance("0"); //결석이면 0
         }
         attendanceRepository.save(attendance);
         return attendanceCreateDTO.getAttendance();
+    }
+
+    public List<Attendance> findAll() {
+        return attendanceRepository.findAll();
     }
 }
 
