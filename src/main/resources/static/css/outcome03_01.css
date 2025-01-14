@@ -203,6 +203,7 @@
 @media (max-width: 450px) {
     * {
         font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+        box-sizing: border-box;
     }
 
     body {
@@ -210,8 +211,7 @@
         color: white;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-        overflow-x: scroll;
+        overflow-x: hidden;
     }
 
     a {
@@ -219,294 +219,169 @@
         color: white;
     }
 
-
     #page-wrapper {
+        min-height: 100vh;
+        padding: 60px 16px;
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
-        height: 78vh;
     }
 
     #main-header {
-        position: sticky;
+        position: fixed;
         top: 0;
-        width: 100%; /**/
-        height: 10%;
+        left: 0;
+        width: 100%;
+        height: 60px;
         background-color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 16px;
         z-index: 999;
     }
 
-    #main-header>a {
-        margin: 13px;
-    }
-
-    #main-header #back-button {
-        height: 25px;
+    #back-button {
         background-color: transparent;
         border: none;
-        padding: 28px;
-    }
-
-    #imagePreview {
-        width: 300px;
-        height: 150px;
+        padding: 8px;
+        height: 40px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        overflow: hidden;
-        margin-bottom: 10px;
     }
 
-    #imagePreview img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-    }
-
-    #main-header #logo {
-        width: 100px;
-        margin-left: 30px;
-        max-height: 40px;
-    }
-
-    #main-header #category_button {
-        height: 30px;
-    }
-
-    nav {
-        display: none;
-    }
-
-    #category_button {
-        width: 40px;
-        height: 35px;
-        top: 16px;
-        left: 15px;
-
+    #back-button img {
+        height: 24px;
     }
 
     #main-navigation {
         display: none;
     }
 
+    #category_button {
+        width: 24px;
+        height: 24px;
+    }
+
     #main-section {
-        position: absolute;
-        top: 13%;
+        width: 100%;
         display: flex;
         flex-direction: column;
+        gap: 16px;
+        padding-bottom: 80px; /* Footer 공간 확보 */
     }
 
     .content-section {
-        flex-direction: column;
+        width: 100%;
     }
 
     .first-container {
-        margin-left: 30px;
-        float: left;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
+        padding: 0 16px;
+        margin-bottom: 16px;
     }
 
-    .second-first-container {
-        margin-top: 5px;
-        /* float: left; */
-        display: flex;
-        /* flex-direction: row; */
-        gap: 10px;
-        margin-left: 15px;
-    }
-
-    .text1{
-        inline-size: 50px;
-        /* border: solid 1px white; */
-        text-align: center;
-        background-color: black;
-        font-size: 10px;
-        color: white;
-    }
-
-    .text2{
-        inline-size: 50px;
-        border: solid 1px black;
-        text-align: center;
-        background-color: #ffffff;
-        font-size: 10px;
-    }
-
-    .second-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .text0 {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
     }
 
     .white-box {
-        height: 400px;
-        width: 340px;
-        /* width: 120%; */
-        border-radius: 8%;
         background-color: #ffffff;
+        border-radius: 16px;
+        padding: 16px;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        /* align-items: center; */
-        margin-top: 10px;
-        overflow-x: hidden;
-        padding: 10px;
+        gap: 16px;
     }
 
     .black-line {
-        height: 300px;
-        width: 300px;
-        margin-left:8px;
-        border-radius: 8%;
-        background-color: #ffffff;
-        border: solid 1px black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        margin-top: 20px;
-        overflow-x: hidden;
-        padding: 10px;
-    }
-
-    .image-box {
-        display: flex;
-        width: 90%;
-        overflow-x: auto;
-        gap: 10px;
-    }
-
-
-    .project-image {
-        width: 150px;
-        height: 150px;
-        margin-top: 10px;
-        justify-content: center;
-        align-items: center;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 12px;
+        flex: 1;
     }
 
     .textbox {
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        height: 200px;
         border: none;
-        overflow-y: auto;
-        /* margin-top: 20px; */
-        margin-left: 5px;
         resize: none;
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 8px;
     }
 
-    .under{
+    #imagePreview {
+        width: 100%;
+        max-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+    }
+
+    #imagePreview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .under {
         display: flex;
         justify-content: space-between;
-        /* height: 20px; */
-    }
-
-    #photo{
-        width: 18px;
-        height: 18px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .photo-link{
-        display: flex;
-        flex-direction:row;
-        /* justify-content: center; */
-    }
-
-    .text3{
-        color: black;
-        margin-left: 5px;
-        margin-top: 13px;
-        font-size: 8px;
-    }
-
-    .complete{
-        margin-top: 10px;
-        margin-right: 20px;
-        height: 25px;
-        inline-size: 74px;
-        border-radius: 15px;
-        /* border: solid 1px black; */
-        text-align: center;
-        background-color: #C0CCFF;
-        font-size: 10px;
-        color: white;
-        border-style: none;
-    }
-
-    #title {
-        text-align: center;
-    }
-
-    #main-footer {
-        background-color: #C0CCFF;
-        text-align: center;
-        color: white;
-        position: flex;
-        transform : translateY(0%);
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
+        padding: 8px 0;
     }
 
-    #main-footer p {
-        margin-bottom: 0;
-        background-color: C0CCFF;
-        color: black;
-    }
-
-    #main-footer img {
-        width: 110px;
-        background-color: C0CCFF;
-    }
-
-    .link {
-        display: flex;
-        gap: 20px;
-    }
-
-    .link a {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        border: none;
-        outline: none;
+    .photo-link {
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 8px;
     }
 
-    .link img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    #login-button {
+    #imageFile {
         display: none;
     }
 
-    .slide {
+    #photo {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    .complete {
+        background-color: #C0CCFF;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    #main-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
+        background-color: #C0CCFF;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .slide {
         position: fixed;
         left: -100%;
-        top: 59px;
-        right: 0;
-        bottom: 0;
-        transition: top 0.5s;
+        top: 60px;
+        width: 100%;
         background-color: black;
-        max-height: 55%;
+        transition: left 0.3s ease;
     }
 
     .slide.on {
@@ -514,11 +389,14 @@
     }
 
     .slide ul li {
-        color: white;
-        display: inline-block;
-        width: 100%;
-        padding: 10px;
-        padding-left: 50px;
+        padding: 16px 24px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+}
 
+@media (min-width: 451px) {
+    /* 태블릿/데스크톱 스타일은 유지하되 사용하지 않음 */
+    #page-wrapper {
+        display: none;
+    }
 }

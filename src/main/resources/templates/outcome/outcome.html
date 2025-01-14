@@ -58,7 +58,7 @@
                 </div>
                 <div id="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button1">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(webOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(webOutcomes)}" data-category="web">
                         <div th:each="outcome, iterStat : ${webOutcomes}">
                             <a th:href="@{'/outcome/web/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -77,7 +77,7 @@
                 </div>
                 <div id="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button2">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(appOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(appOutcomes)}" data-category="app">
                         <div th:each="outcome, iterStat : ${appOutcomes}">
                             <a th:href="@{'/outcome/app/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -96,7 +96,7 @@
                 </div>
                 <div id="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button3">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(gameOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(gameOutcomes)}" data-category="game">
                         <div th:each="outcome, iterStat : ${gameOutcomes}">
                             <a th:href="@{'/outcome/game/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -122,6 +122,7 @@
     <script th:src="@{~/js/menu_style.js}"></script>
     <script th:src="@{~/js/back_button.js}" defer></script>
     <script th:src="@{~/js/switch.js}"></script>
+    <script th:src="@{~/js/outcome.js}"></script>
 
 </body>
 </html>
