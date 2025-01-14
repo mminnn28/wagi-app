@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/notice/manager/**").hasAnyRole("ADMIN", "MANAGER")
                         .requestMatchers("/outcome/manager/**").hasAnyRole("ADMIN", "MANAGER")
                         .requestMatchers("/", "/login", "/signup").permitAll() // 인증되지 않은 사용자의 접근 가능 페이지
+                        .requestMatchers("/", "/login", "/signup", "/makers").permitAll() // 인증되지 않은 사용자의 접근 가능 페이지
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll() // 정적 리소스 접근 허용
                         .requestMatchers("/notice").permitAll()
                         .requestMatchers("/notice/detail/**").permitAll()

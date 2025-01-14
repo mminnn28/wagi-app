@@ -7,5 +7,6 @@ import wagi_app.wagi.entity.AdmittedUsers;
 @Repository
 public interface AdmittedUsersRepository extends JpaRepository<AdmittedUsers, String> {
     boolean existsByAdmittedId(String admittedId);
+    void save(String admittedId);
 
 }

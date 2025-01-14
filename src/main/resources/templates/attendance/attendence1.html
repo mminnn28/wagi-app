@@ -12,6 +12,9 @@
 </head>
 <body>
 <header id="main-header">
+    <button id="back-button">
+        <img src="/img/whiteBack.svg" alt="back">
+    </button>
     <a th:href="@{/}">
         <img src="/img/WAGI_logo_crop.png" alt="logo">
     </a>
@@ -34,8 +37,8 @@
             <div sec:authorize="isAuthenticated()">
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <li class="menu-item"><a th:href="@{/admin/attendance}">Manager-출석</a></li>
-                    <li class="menu-item"><a th:href="@{admin/register}">Manager-합격자</a></li>
-                    <li class="menu-item"><a th:href="@{admin/auth}">Manager-권한</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/register}">Manager-합격자</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/auth}">Manager-권한</a></li>
                 </div>
             </div>
         </ul>

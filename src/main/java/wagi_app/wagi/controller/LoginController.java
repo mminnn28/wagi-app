@@ -12,7 +12,7 @@ public class LoginController {
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
         if (error != null) {
-            model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+            model.addAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
         }
         return "user/login";
     }

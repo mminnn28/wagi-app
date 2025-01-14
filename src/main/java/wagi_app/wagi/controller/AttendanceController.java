@@ -120,7 +120,7 @@ public class AttendanceController {
     //출석 인증번호 생성 화면
     @GetMapping("/admin/attendance")
     public String createAttendanceCode() {
-        return "attendance/manager1";
+        return "manager/manager1";
     }
 
     //출석 인증번호 공개 화면
@@ -130,7 +130,7 @@ public class AttendanceController {
         String attendanceCode = attendanceService.createAttendanceCode(); // 인증번호 생성
         model.addAttribute("attendanceCode", attendanceCode); // 모델에 데이터 추가
 
-        return "attendance/maneger2";
+        return "manager/maneger2";
     }
 
 }

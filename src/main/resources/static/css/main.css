@@ -40,6 +40,12 @@
         z-index: 999;/*Notice main쪽 z index 설정때문에 이거 맞춰둡니다*/
     }
 
+    #main-header #back-button {
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
     
     #main-header>a{
         margin-top: 40px;
@@ -124,7 +130,7 @@
         object-fit: cover;
     }
     
-    #login-button {
+    .login-button {
         padding: 10px 20px;
         border: none;
         cursor: pointer;
@@ -193,7 +199,14 @@
         align-items: center;
         z-index: 999;
     }
-        
+
+    #main-header #back-button {
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
+
     #main-header>a {
         margin-top: 30px;
     }
@@ -342,8 +355,16 @@
         object-fit: cover;
     }
     
-    #login-button {
-        display: none;
+    .login-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
+
+    .logout-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
     }
     
     .slide {

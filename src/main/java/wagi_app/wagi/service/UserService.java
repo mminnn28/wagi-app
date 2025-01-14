@@ -11,11 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import wagi_app.wagi.DTO.UserCreateDto;
+import wagi_app.wagi.DTO.UserDto;
 import wagi_app.wagi.entity.User;
 import wagi_app.wagi.repository.AdmittedUsersRepository;
 import wagi_app.wagi.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -59,4 +63,28 @@ public class UserService implements UserDetailsService {
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         );
     }
+
+    public List<UserDto> getUserList() {
+        List <UserDto> members = new ArrayList<>();
+        List<User> userList = userRepository.findAll();
+        for (User user : userList) {
+            members.add(UserDto.builder()
+                            .studentId(user.getStudentId())
+                            .role(user.getRole())
+                            .build());
+        }
+        return members;
+    }
+
+    public void updateRole(UserDto userDto) throws  Exception{
+        Optional<User> userOptional = userRepository.findByStudentId(userDto.getStudentId());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setRole(userDto.getRole()); // 권한 변경
+            userRepository.save(user); // db 업데이트
+        } else {
+           throw new IllegalArgumentException();
+        }
+    }
+
 }

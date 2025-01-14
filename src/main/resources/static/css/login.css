@@ -48,6 +48,9 @@
 
     #main-header #back-button {
         height: 25px;
+        background-color: transparent;
+        border: none;
+        padding: 28px;
     }
     
     #main-navigation {
@@ -345,8 +348,16 @@
         object-fit: cover;
     }
     
-    #login-button {
-        display: none;
+    .login-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
+    }
+
+    .logout-button {
+        border-radius: 30px;
+        background-color: black;
+        border:none;
     }
     
     .slide {
@@ -421,10 +432,13 @@
         font-size: 12px;
         margin-right: 280px;
     }
-    
+
     #main-header #back-button {
-        height: 20px;
-    }
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            padding: 28px;
+        }
     
     #page-wrapper {
         display: flex;

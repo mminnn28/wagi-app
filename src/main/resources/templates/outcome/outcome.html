@@ -56,9 +56,9 @@
                         <div class="categoryText">Web</div>
                     </div>
                 </div>
-                <div id="whiteRectangle">
+                <div class="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button1">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(webOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(webOutcomes)}" data-category="web">
                         <div th:each="outcome, iterStat : ${webOutcomes}">
                             <a th:href="@{'/outcome/web/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -75,9 +75,9 @@
                         <div class="categoryText">App</div>
                     </div>
                 </div>
-                <div id="whiteRectangle">
+                <div class="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button2">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(appOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(appOutcomes)}" data-category="app">
                         <div th:each="outcome, iterStat : ${appOutcomes}">
                             <a th:href="@{'/outcome/app/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -96,7 +96,7 @@
                 </div>
                 <div id="whiteRectangle">
                     <img src="img/purpleBack.png" alt="Back" id="back-button3">
-                    <div class="outcome-images" th:if="${not #lists.isEmpty(gameOutcomes)}">
+                    <div class="outcome-images" th:if="${not #lists.isEmpty(gameOutcomes)}" data-category="game">
                         <div th:each="outcome, iterStat : ${gameOutcomes}">
                             <a th:href="@{'/outcome/game/' + ${outcome.id}}">
                                 <img th:src="${outcome.imagePath}" th:alt="${outcome.title}" class="outcome-image">
@@ -117,11 +117,12 @@
     <footer id="main-footer">
         <img src="img/WAGI_black.png" alt="footer-logo">
         <p>ⓒWAGI. 2024 All rights reserved</p>
-        <button id="login-button"><a href="login.html">LOGIN</a></button>
+        <button class="login-button"><a href="login.html">LOGIN</a></button>
     </footer>
     <script th:src="@{~/js/menu_style.js}"></script>
     <script th:src="@{~/js/back_button.js}" defer></script>
     <script th:src="@{~/js/switch.js}"></script>
+    <script th:src="@{~/js/outcome.js}"></script>
 
 </body>
 </html>

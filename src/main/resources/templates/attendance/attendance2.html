@@ -13,7 +13,7 @@
 <body>
 <header id="main-header">
     <button id="back-button">
-        <img src="img/whiteBack.svg" alt="back">
+        <img src="/img/whiteBack.svg" alt="back">
     </button>
     <a th:href="@{/}">
         <img src="/img/WAGI_logo_crop.png" alt="logo">
@@ -37,8 +37,8 @@
             <div sec:authorize="isAuthenticated()">
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                     <li class="menu-item"><a th:href="@{/admin/attendance}">Manager-출석</a></li>
-                    <li class="menu-item"><a th:href="@{admin/register}">Manager-합격자</a></li>
-                    <li class="menu-item"><a th:href="@{admin/auth}">Manager-권한</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/register}">Manager-합격자</a></li>
+                    <li class="menu-item"><a th:href="@{/admin/auth}">Manager-권한</a></li>
                 </div>
             </div>
         </ul>
@@ -49,7 +49,7 @@
    
     
 <div id="page-wrapper">
-    <form th:action="@{/attendance/request}" th:object="${attendanceCreateDTO}" method="post" id="attendance-form">
+    <form th:object="${attendanceCreateDTO}" id="attendance-form">
         <div id="main-section">
            
                 <div id="attendance-box">
@@ -57,16 +57,16 @@
                     <div id="babywagi-icon">
                         <img src="/img/baby_wagi.png" alt="Battery Icon">
                     </div>
-                        <p id="gg">인증번호를 입력해주세요</p>
-                        <div id="user-info">
-                            <div id="attendance-inbox">
-                                <input type="text" th:field="*{inputCode}" class="inputContainer" placeholder="Enter Code"/>
-                            </div>
+                    <p id="gg">인증번호를 입력해주세요</p>
+                    <div id="user-info">
+                        <div id="attendance-inbox">
+                            <input type="text" th:field="*{inputCode}" class="inputContainer" placeholder="Enter Code"/>
                         </div>
+                    </div>
 
                 </div>
         </div>
-        <button type="submit" id="attendance-button">attendance</button>
+        <button type="submit" id="attendance-button"><a th:href="@{/attendance/request}" method="post">attendance</a></button>
     </form>
 
 </div>

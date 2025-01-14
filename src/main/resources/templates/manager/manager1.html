@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WAGI WEB PAGE</title>
-    <link rel="stylesheet" th:href="@{css/base.css}">
-    <link rel="stylesheet" th:href="@{css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/manager1.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <header id="main-header">
+    <button id="back-button">
+        <img src="/img/whiteBack.svg" alt="back">
+    </button>
     <a th:href="@{/}">
         <img src="/img/WAGI_logo_crop.png" alt="logo">
     </a>
@@ -41,40 +45,29 @@
     </div>
     <!-- 모바일 전용 -->
 </header>
-   
-    <p><h2>&nbsp;&nbsp;✦ Login</h2></p>
-
-
+    <h2>&nbsp;&nbsp;✦&nbsp; manager </h2>
+    
     <div id="page-wrapper">
         <div id="main-section">
-            <div id="login-section">
-
-                <div th:if="${errorMessage}" style="color: white; margin-bottom: 10px;">
-                    <p th:utext="${errorMessage}"></p>
-                </div>
-                 <form method="post" action="" id="login-form">
-                    <input type="text" name="userId" placeholder="ID" ><br>
-                    <input type="password" name="password" placeholder="Password"><br>
-                    <a th:href="@{/signup}" id="join">join</a><br>
-                    <input type="submit" value="login">
-                </form>
-            </div>
+            <img src="/img/wagi.png" alt="" id="wagi_img">
         </div>
+        <form th:action="@{/admin/attendance}" method="post">
+            <button id="create-button">Create Number</button>
+        </form>
     </div>
 
-<footer id="main-footer">
-    <img src="/img/WAGI_black.png" alt="logo">
+    <footer id="main-footer">
+        <img src="/img/WAGI_black.png" alt="logo">
 
-    <p>ⓒWAGI. 2024 All rights reserved</p>
+        <p>ⓒWAGI. 2024 All rights reserved</p>
 
-    <button class="login-button" sec:authorize="isAnonymous()">
-        <a th:href="@{/login}">LOGIN</a>
-    </button>
-    <button class="login-button" sec:authorize="isAuthenticated()">
-        <a th:href="@{/logout}">LOGOUT</a>
-    </button>
-</footer>
-    <script src="js/menu_style.js"></script>
-
+        <button class="login-button" sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">LOGIN</a>
+        </button>
+        <button class="login-button" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">LOGOUT</a>
+        </button>
+    </footer>
+    <script src="/js/menu_style.js"></script>
 </body>
 </html>
