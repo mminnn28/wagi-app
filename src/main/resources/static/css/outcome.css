@@ -362,7 +362,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0;
+        padding-left: 10px;
         width: 100%;
     }
 
@@ -401,13 +401,14 @@
         background-color: #C0CCFF;
         text-align: center;
         color: white;
-        position: flex;
+        position: fixed;
         transform : translateY(0%);
         bottom: 0;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        z-index: 1000;
     }
 
     #main-footer p {
@@ -519,7 +520,7 @@
         background: none;
         color: white;
         width: 100%; /* 전체 너비 사용 */
-        padding-left: 180px; /* 패딩 추가 */
+        padding-left: 190px; /* 패딩 추가 */
         text-align: center;
     }
 
