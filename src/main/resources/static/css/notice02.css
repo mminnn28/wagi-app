@@ -7,6 +7,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
     }/*Notice_main.html 때문에 *에서 body로 변경함*/
     
     body {
@@ -24,6 +25,9 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+        width: 100%; /* 너비 추가 */
+        max-width: 100%; /* 최대 너비 제한 */
+        overflow-x: hidden; /* 가로 스크롤 방지 */
     }
     
     #main-header {
@@ -193,7 +197,11 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        overflow-x: scroll;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100vh; /* viewport 높이로 설정 */
+        display: flex;
+        flex-direction: column; /* 세로 방향 레이아웃 */
     }
     
     a {
@@ -202,11 +210,13 @@
     }
     
     #page-wrapper {
+        flex: 1;
         display: flex;
         flex-direction: column;
         /* align-items: center; */ /*이걸 없애야 왼쪽으로 정렬됨*/
         /* justify-content: center; */ /*이걸 없애야 위쪽으로 정렬됨*/
-        height: 80vh; /*전체화면 길이*/
+        position: relative;
+        padding: 0 20px;
     }
     
     #main-header {
@@ -264,13 +274,12 @@
     } */
 
     #main-section {
-        position: relative;
-        top: 13px;
-        left: 0;
+        width: 100%;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-       
+        height: calc(100vh - 250px); /* 헤더와 푸터 제외한 높이 */
+        position: relative;
     }
     
     .content-section {
@@ -285,11 +294,10 @@
     
 
     .outcomeText{
-        margin-left: 10px;
+
     }
 
     .circleText{
-        margin-left: 30px;
         margin-right: 10px;
     }
 
@@ -301,11 +309,18 @@
     }
 
     .third-container{
-        margin-left: 50px;
-        gap: 20px;
+        margin: 0;  /* 왼쪽 마진 제거 */
+        padding: 15px 0;  /* 상하 패딩 추가 */
         display: flex;
         flex-direction: row;
         font-size: 15px;
+        width: calc(100% - 20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* 구분선 더 선명하게 */
+    }
+
+    /* 마지막 아이템의 구분선 제거 (선택사항) */
+    .third-container:last-child {
+        border-bottom: none;
     }
 
     .text-container{
@@ -354,9 +369,30 @@
     }
 
     .list-container {
-        max-height: 200px;
-        overflow-y: auto;
         width: 100%;
+        max-height: 400px; /* 고정된 높이 설정 */
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        border-right: 3px solid transparent;
+    }
+
+    /* 흰색 스크롤바 스타일링 */
+    .list-container::-webkit-scrollbar {
+        width: 5px;
+        position: absolute;
+        right: 0;
+    }
+
+    .list-container::-webkit-scrollbar-track {
+        background: rgba(0, 255, 0, 0.1);
+        border-radius: 3px;
+    }
+
+    .list-container::-webkit-scrollbar-thumb {
+        background: white; /* 흰색 스크롤바 */
+        border-radius: 3px;
     }
     
     #title {
@@ -365,15 +401,15 @@
     
     #main-footer {
         background-color: #C0CCFF;
-        text-align: center;
-        color: white;
-        position: flex;
-        transform : translateY(0%);
-        bottom: 0;
         width: 100%;
+        padding: 20px 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
+        z-index: 1000;
     }
 
     #main-footer p {
@@ -385,6 +421,11 @@
     #main-footer img {
         width: 110px;
         background-color: C0CCFF;
+    }
+
+    .text1 {
+        min-width: 100px; /* 날짜 영역 고정 너비 */
+        margin-right: 20px;
     }
 
     /* 제목을 위한 스타일 추가 */
@@ -458,13 +499,15 @@
     }
 
     #write-button{
-        padding-top:30px;
-        padding-left: 170px;
-        border:none;
-        background:none;
-        color:white;
-        width: 100%; /* 전체 너비 사용 */
+        padding-top: 20px;
+        padding-left: 30px;
+        border: none;
+        background: none;
+        color: white;
+        width: 100%;
         text-align: center;
+        position: relative; /* 위치 고정 */
+        bottom: 0;
     }
 
     #write-button a {

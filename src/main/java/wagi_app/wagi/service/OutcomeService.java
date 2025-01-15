@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import wagi_app.wagi.DTO.OutcomeCreateDto;
 import wagi_app.wagi.DTO.OutcomeUpdateDto;
@@ -18,7 +19,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -119,15 +122,27 @@ public class OutcomeService {
             return null;
         }
 
-        String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
-        Path directory = Paths.get(uploadDir);
-        if (!Files.exists(directory)) {
-            Files.createDirectories(directory); // 폴더가 없으면 생성
-        }
+        try {
+            // 업로드 디렉토리 생성
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
-        Path filePath = directory.resolve(fileName);
-        imageFile.transferTo(filePath.toFile());
-        return "/uploads/img/" + fileName;
+            // 파일명 생성 (원본 파일의 확장자 유지)
+            String originalFileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+            String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+            String fileName = UUID.randomUUID().toString() + fileExtension;
+
+            // 파일 저장
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // DB에 저장될 상대 경로 반환
+            return "/uploads/" + fileName;  // 경로 형식 수정
+        } catch (IOException e) {
+            throw new IOException("파일 저장 중 오류가 발생했습니다: " + e.getMessage());
+        }
     }
 
     private void deleteImage(String imagePath) {
