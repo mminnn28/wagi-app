@@ -186,30 +186,41 @@
         z-index: 999;
     }
 
-    #main-header > a {
-        margin-top: 3vh;
+   #main-header>a {
+        margin-top: 30px;
+        margin-left:-30px;
     }
+    #main-header > a> img {
+        margin-right:-17px;
+        width: 100px;
+        margin-left: 122px;
+        max-height: 40px;
+        margin-bottom: 10px;
+    }
+
 
     #main-header #back-button {
         height: 20px;
     }
 
-    #main-header > a > img {
-        width: 20vw;
-        margin-left: 5vw;
-        max-height: 4vh;
-        margin-bottom: 1vh;
-    }
 
     nav {
         display: none;
     }
 
     #category_button {
-        width: 10vw;
-        height: 8vh;
-        top: 3vh;
-        left: 3vw;
+        width: 40px;/**/
+        height: 35px;/**/
+        top: 16px;
+        left: 15px;
+
+    }
+
+    #main-header #back-button {
+                height: 25px;
+                background-color: transparent;
+                border: none;
+                padding: 28px;
     }
 
     #main-navigation {

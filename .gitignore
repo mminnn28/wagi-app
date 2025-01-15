@@ -37,4 +37,4 @@ out/
 .vscode/
 
 # Spring Boot properties
-application-aws.properties
+/src/main/resources/application-aws.properties

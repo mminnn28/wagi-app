@@ -1,6 +1,8 @@
 package wagi_app.wagi.entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +11,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import wagi_app.wagi.DTO.UserCreateDto;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.Collections;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 public class User implements UserDetails {
     @Id
@@ -54,6 +57,10 @@ public class User implements UserDetails {
         return user;
     }
 
+    // Override한 getUsername은 로그인 시 사용해야해서 사용자 이름 가져오는 접근자 메서드 정의
+    public String getName() {
+        return username;
+    }
     // UserDetails 인터페이스 메서드 구현
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { // 권한 반환 ROLE_USER, etc...

@@ -423,20 +423,16 @@
     }
     
     #attendance-button {
-        position: relative;
         background-color: #fff;
-        bottom: 551px; 
-        left: 36%;
         color:#C0CCFF;
         border: none;
         padding: 10px 20px;
         border-radius: 25px;
         font-weight: bold;
         cursor: pointer;
-        margin-top: 20px;
+        margin-top: 65px;
         font-size: 16px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top:-60px;
     }
 
     #attendance-inbox {

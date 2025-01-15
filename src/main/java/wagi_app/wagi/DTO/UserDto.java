@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDto {
     private String studentId;
+    private String username;
     private String role;
 }

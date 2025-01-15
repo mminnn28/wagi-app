@@ -2,7 +2,9 @@ package wagi_app.wagi.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -85,6 +87,29 @@ public class UserService implements UserDetailsService {
         } else {
            throw new IllegalArgumentException();
         }
+    }
+    public UserDto getUserInfo() {
+        // 로그인한 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
+            throw new RuntimeException("로그인한 사용자가 없습니다.");
+        }
+
+        // 로그인한 사용자의 userId 가져오기
+        String userId = authentication.getName();
+        // userId로 사용자 찾아서 학번, 이름 반환
+        Optional<User> userOptional = userRepository.findByUserId(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return UserDto.builder()
+                    .username(user.getName())
+                    .studentId(user.getStudentId())
+                    .role(user.getRole())
+                    .build();
+        } else {
+            throw new IllegalArgumentException();
+        }
+
     }
 
 }
