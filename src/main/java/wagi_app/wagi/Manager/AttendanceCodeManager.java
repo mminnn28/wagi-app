@@ -11,7 +11,8 @@ public class AttendanceCodeManager {
     // 출석 코드 생성
     public void generateAttendanceCode(String code) {
         this.attendanceCode = code;
-        this.expirationTime = System.currentTimeMillis() + 60000; // 1분 유효 (60000 밀리초)
+        this.expirationTime = System.currentTimeMillis() + 60000; // 1분 유효
+        System.out.println(code);
     }
 
     // 유효한 출석 코드 반환, 만료된 경우 null 반환

@@ -81,6 +81,14 @@ public class AttendanceController {
     public String submitAttendanceCode(@ModelAttribute AttendanceCreateDTO attendanceCreateDTO, Model model) {
 
         String correctCode = attendanceCodeManager.getAttendanceCode();
+
+        System.out.println("Input Code: [" + attendanceCreateDTO.getInputCode() + "]");
+        System.out.println("Correct Code: [" + correctCode + "]");
+
+        System.out.println("Input Code Length: " + attendanceCreateDTO.getInputCode().length());
+        System.out.println("Correct Code Length: " + correctCode.length());
+
+
         if (correctCode == null) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication.getPrincipal() instanceof User) {
@@ -104,11 +112,12 @@ public class AttendanceController {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication.getPrincipal() instanceof User) {
                 User user = (User) authentication.getPrincipal();
-                attendanceCreateDTO.setUserId(user.getUsername());
+                attendanceCreateDTO.setUserId(user.getUserId());
                 attendanceService.createAttendance(attendanceCreateDTO);
                 return "attendance/attendance4"; // 출석 성공
             }
         }
+        System.out.println("인증 코드가 일치하지 않음");
         return "attendance/attendance2"; // 다시 입력 페이지로 이동
 
     }

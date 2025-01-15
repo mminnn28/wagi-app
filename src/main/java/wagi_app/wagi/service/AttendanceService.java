@@ -12,6 +12,7 @@ import wagi_app.wagi.repository.UserRepository;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,12 +46,16 @@ public class AttendanceService {
     }
 
     //출석 인증번호 확인 및 출석 처리
-    public String createAttendance(AttendanceCreateDTO attendanceCreateDTO) {
+    public void createAttendance(AttendanceCreateDTO attendanceCreateDTO) {
         Attendance attendance = new Attendance();
-        attendance.setUserId(attendanceCreateDTO.getUserId());
-        attendance.setAttendance("1");
-        attendanceRepository.save(attendance);
-        return attendanceCreateDTO.getAttendance();
+        Optional<User>optionalUser = userRepository.findByUserId(attendanceCreateDTO.getUserId());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            attendance.setUser(user);
+            attendance.setAttendance("1");
+            attendanceRepository.save(attendance);
+        }
+
     }
 
     // 출석하지 않은 학생들을 결석 처리
@@ -67,7 +72,7 @@ public class AttendanceService {
         for (User user : allUsers) {
             if (!attendedUserIds.contains(user.getUserId())) {
                 Attendance attendance = new Attendance();
-                attendance.setUserId(user.getUsername());
+                attendance.setUser(user);
                 attendance.setAttendance(null);
                 attendanceRepository.save(attendance);
             }

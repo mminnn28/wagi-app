@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class AttendanceCreateDTO {
 
-    private String userId; //로그인 아이디
+    private String userId; //user pk
 
     private Long attendanceId; //pk (DB 출결 정보 식별용)
 
