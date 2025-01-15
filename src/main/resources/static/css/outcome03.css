@@ -304,12 +304,12 @@
 
   .first-container {
     padding: 0 8px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   .text0 {
     width: 100%;
-    padding: 12px;
+    padding: 5px;
     background-color: transparent;
     border: 1px solid #ffffff;
     border-radius: 8px;
@@ -336,7 +336,7 @@
     flex: 1;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 12px;
+    padding: 5px 12px 12px 12px;
     margin-bottom: 16px;
   }
 
@@ -376,10 +376,13 @@
     margin-top: auto;
   }
 
+  #imageFile {
+    display: none;
+  }
+
   #photo {
     width: 24px;
     height: 24px;
-    margin: 0;
     cursor: pointer;
   }
 

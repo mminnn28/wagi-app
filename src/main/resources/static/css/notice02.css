@@ -459,10 +459,16 @@
 
     #write-button{
         padding-top:30px;
-        padding-left: 255px;
+        padding-left: 170px;
         border:none;
         background:none;
         color:white;
+        width: 100%; /* 전체 너비 사용 */
+        text-align: center;
     }
-    
+
+    #write-button a {
+        display: inline-block; /* 링크를 블록 요소로 변경 */
     }
+
+}

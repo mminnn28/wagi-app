@@ -32,6 +32,7 @@
         align-items: center;
         justify-content: center;
         height: 120vh;
+        width: 100%;
     }
 
     #main-header {
@@ -76,8 +77,10 @@
         left: 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        /*align-items: flex-start;*/
         margin-left: 10px;
+        width: 100%;
+        align-items: center;
         /* font-size: 50px; */
     }
 
@@ -208,6 +211,7 @@
         width: auto;
         height: auto;
         object-fit: contain;
+        margin: auto;
     }
 
     body {
@@ -219,6 +223,7 @@
         overflow-x: scroll;
     }
 
+
     a {
         text-decoration-line: none;
         color: white;
@@ -229,7 +234,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 230vh; /*전체화면 길이*/
+        height: 150vh;/*전체화면 길이*/
+        width: 100%;
     }
 
     #main-header {
@@ -296,10 +302,13 @@
         top: 13%;
         display: flex;
         flex-direction: column; /*무조건 필요*/
+        width: 100%;
+        align-items: flex-start;
     }
 
     .content-section {
         flex-direction: column;
+        align-items: center;
     }
 
     /* 이건 지우지 말기 */
@@ -310,19 +319,32 @@
     } */
 
     .circleText{
-        margin-left: 25px;
+        margin-left: 10px;
         margin-right: 10px;
     }
 
     .first-container{
-        margin-left: 20px;
+        margin-left: 0px;
+        padding-left: 10px;
         font-size: 25px;
+        width: 100%;
+        text-align: left; /* 왼쪽 정렬 추가 */
+        justify-content: flex-start
+    }
+
+    .outcomeText {
+        text-align: left;
+        margin-left: 0; /* 20px에서 0으로 변경 */
+        padding-left: 10px; /* 대신 padding 사용 */
+        margin-bottom: 10px;
     }
 
     .text-container{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        text-align: left; /* 왼쪽 정렬 추가 */
+        padding-left: 10px; /* 왼쪽 여백 추가 */
     }
 
     .categoryText{
@@ -340,13 +362,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 20px;
+        padding: 0;
+        width: 100%;
     }
 
     #back-button1, #next-button1, #back-button2, #next-button2, #back-button3, #next-button3  {
         cursor: pointer;
         z-index: 2;
+        width: 58px;
+        height: 58px;
     }
+
 
     #ham-image1, #ham-image2, #ham-image3 {
         width: 300px;
@@ -356,16 +382,16 @@
 
 
 
-    .first-container, .second-container {
+    .second-container {
         display: flex;
         align-items: flex-end;
         margin: 10px 0;
         justify-content: flex-start;
     }
 
-    .first-container{
-        /* font-size: 25px; */
-    }
+    /*.first-container{*/
+    /*    !* font-size: 25px; *!*/
+    /*}*/
 
     #title {
         text-align: center;
@@ -450,12 +476,17 @@
         height: 300px;
         position: relative;
         overflow: hidden;
+        display: flex; /* 추가 */
+        justify-content: flex-start; /* 추가 */
+        align-items: center; /* 추가 */
+        margin: 0;
     }
 
     .outcome-images > div {
         display: none;
         width: 100%;
         height: 100%;
+        text-align: center; /* 추가 */
     }
 
     .outcome-images > div:first-child {
@@ -470,19 +501,29 @@
         padding-left: 50px;
     }
 
-    #outcome-image {
-        max-width: 360px;
-        max-height: 400px;
+    .outcome-image {
+        max-width: 300px;
+        max-height: 300px;
         width: auto;
         height: auto;
         object-fit: contain;
+        position: absolute; /* 추가 */
+        top: 50%; /* 추가 */
+        left: 50%; /* 추가 */
+        transform: translate(-50%, -50%); /* 추가 */
     }
 
     #write-button{
-        padding-top:30px;
-        padding-left: 255px;
-        border:none;
-        background:none;
-        color:white;
+        padding-top: 30px;
+        border: none;
+        background: none;
+        color: white;
+        width: 100%; /* 전체 너비 사용 */
+        padding-left: 180px; /* 패딩 추가 */
+        text-align: center;
+    }
+
+    #write-button a {
+        display: inline-block; /* 링크를 블록 요소로 변경 */
     }
 }
